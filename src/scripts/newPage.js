@@ -19,6 +19,7 @@ ins.fs.writeFileSync(routerFile, routerContent);
 let tplFragFile = ins.path.join(ins.tplDir, 'fragePage.js');
 let fragContent = ins.fs.readFileSync(tplFragFile, "utf-8").replace(/smallCamel/g, ins.smallCamel);
 ins.fs.mkdirSync(ins.path.join(pageDir,ins.smallCamel));
+ins.fs.mkdirSync(ins.path.join(pageDir,ins.smallCamel,'/components'));
 ins.fs.writeFileSync(ins.path.join(pageDir,ins.smallCamel + '/index.js'), fragContent);
 
 let tplPageFile = ins.path.join(ins.tplDir, 'page.js');

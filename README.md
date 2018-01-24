@@ -60,7 +60,10 @@ npm run build
 │     │     │     ├── api //功能模块对应ajax请求方法
 │     │     │     ├── assets //此应用对应的静态资源
 │     │     │     ├── config //应用根据系统环境选择不同配置文件
-│     │     │     ├── features //应用组件功能集合
+│     │     │     ├── pages //页面
+│     │     │     ├── layout //模板页面
+│     │     │     ├── constants //全局常量
+│     │     │     ├── components //全局公用组件
 │     │     │     ├── utils //提供一些小工具
 │     │     │     ├── app.js //应用的入口
 │     │     │     └── interceptor.js //发出异步请求拦截器
@@ -72,14 +75,22 @@ npm run build
 ```
 ==============================================
 ### 使用技巧
+
 1.新建组件
 ```
  npm run newCom -- comName [-- d]（组件目录）
+
+ comName地址：./src/webapp/components
 ```
-1.新建页面
+2.新建页面
 ```
  运行 npm run newPage -- pageName
- 
- 你会惊奇得发现，与页面相关得actions,redux,routers,contants,api,type 自动生成
 
+ pageName地址：./src/webapp/pages/pageName
+
+ 自动生成 actions,redux,routers,contants,api,type 
+```
+3.组织规范
+```
+ 参考home主页代码规范 
 ```
