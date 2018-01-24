@@ -80,6 +80,6 @@ npm run build
 ```
  运行 npm run newPage -- pageName
  
- 你会惊奇得发现，与页面相关得actions,redux,routers,contants,api,type 都自动帮你生成
+ 你会惊奇得发现，与页面相关得actions,redux,routers,contants,api,type 自动生成
 
 ```
