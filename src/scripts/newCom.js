@@ -11,14 +11,14 @@ let comContent = ins.fs
 //新建文件即可
 if (ins.argv._.length < 2) {
   ins.fs.writeFileSync(
-    ins.path.join(ins.pageDir, "components/" + ins.smallCamel + ".js"),
+    ins.path.join(ins.appDir, "components/" + ins.smallCamel + ".js"),
     comContent
   );
 } else {
   //新建文件夹或者文件
-  ins.fs.mkdirSync(ins.path.join(ins.pageDir, "components/" + ins.smallCamel));
+  ins.fs.mkdirSync(ins.path.join(ins.appDir, "components/" + ins.smallCamel));
   ins.fs.writeFileSync(
-    ins.path.join(ins.pageDir, "components/" + ins.smallCamel + "/index.js"),
+    ins.path.join(ins.appDir, "components/" + ins.smallCamel + "/index.js"),
     comContent
   );
 }
