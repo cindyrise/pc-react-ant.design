@@ -1,6 +1,5 @@
-import { combineReducers } from 'redux';
 import assign from 'object-assign';
-import { homeType } from '../../constants/actionTypes';
+import { homeType } from './actionType';
 const initialState = {
   homeData: []
 };

@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import appReducer from '../reducers';
+import appReducer from '../pages/global';
 
-export default function configureStore(initialState) {
+export default function configStore(initialState) {
     const store = createStore(
         appReducer,
         initialState,
@@ -11,6 +11,5 @@ export default function configureStore(initialState) {
             window.devToolsExtension ? window.devToolsExtension() : fn => fn
         ),
     );
-
     return store;
 }

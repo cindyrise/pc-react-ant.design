@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import assign from 'object-assign';
-import { globalType } from '../constants/actionTypes';
+import { globalType } from './actionType';
 const initialState = {
   userData: {name:''},
   navData: [],

@@ -1,33 +1,14 @@
-import { homeType } from '../constants/actionTypes';
+import { globalType } from './actionType';
 import { message } from 'antd';
-import ajax from '../../api/home';
-
-export const homeAction = {
-  // 获取数据源管理列表的数据
-  getHomeData(params) {
-    return dispatch => {
-      ajax.getHomeData(params).then((res) => {
-        const { data, result, result_code, result_message } = res;
-        if (result) {
-          dispatch({
-            type: homeType.GET_HOME_DATA,
-            payload: data
-          });
-        }
-        else {
-          message.error(result_message);
-        }
-      })
-    }
-  },
-
+import ajax from '../../api/global';
+export const globalAction = {
   getUserData() {
     return dispatch => {
       ajax.getUserData().then(res => {
         const { data, result, result_code, result_message } = res;
         if (result) {
           dispatch({
-            type: homeType.GET_USER_DATA, 
+            type: globalType.GET_USER_DATA,
             payload: data
           });
         } else {
@@ -36,14 +17,13 @@ export const homeAction = {
       })
     }
   },
-
   getNavData(params) {
     return dispatch => {
       ajax.getNavData(params).then(ret => {
         const { result_code, result_message, data } = ret;
         if (result_code === 1) {
           dispatch({
-            type: homeType.GET_NAV_DATA,
+            type: globalType.GET_NAV_DATA,
             payload: data
           });
         }

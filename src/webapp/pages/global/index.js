@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import { homeReducer } from './home';
-import { globalReducer } from './global';
+import { homeReducer } from '../home/reducer';
+import { globalReducer } from './reducer';
 
 const appReducer = combineReducers({
   routing,
