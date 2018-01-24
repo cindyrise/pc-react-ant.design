@@ -2,11 +2,12 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Layout, Menu, Breadcrumb } from "antd";
-import { smallCamelAction } from './smallCamelAction';
+import { smallCamelAction } from './action';
 import { isEmpty } from 'lodash';
 import assign from 'object-assign';
 import './style.scss';
 
+const { Header, Content, Footer } = Layout;
 const mapState = state => ({
   smallCamelData: state.smallCamel.smallCamelData,
 });
