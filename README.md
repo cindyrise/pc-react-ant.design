@@ -83,3 +83,7 @@ npm run build
  你会惊奇得发现，与页面相关得actions,redux,routers,contants,api,type 都自动帮你生成
 
 ```
+
+### 分支说明
+
+所有页面对应的 action放在一起 ,redux放在一起, TYPE 放在一起
