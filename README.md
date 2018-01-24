@@ -64,7 +64,7 @@ npm run build
 │     │     │     ├── utils //提供一些小工具
 │     │     │     ├── app.js //应用的入口
 │     │     │     └── interceptor.js //发出异步请求拦截器
-
+│     │     └── script //脚本目录
 ├── .babelrc //babel相关配置
 └── package.json //node相关环境的配置文件
 
@@ -72,11 +72,11 @@ npm run build
 ```
 ==============================================
 ### 使用技巧
-1.新建组件技巧
+1.新建组件
 ```
  npm run newCom -- comName [-- d]（组件目录）
 ```
-1.新建页面技巧
+1.新建页面
 ```
  运行 npm run newPage -- pageName
  

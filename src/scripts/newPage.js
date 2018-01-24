@@ -21,7 +21,7 @@ let fragContent = ins.fs.readFileSync(tplFragFile, "utf-8").replace(/smallCamel/
 ins.fs.mkdirSync(ins.path.join(pageDir,ins.smallCamel));
 ins.fs.writeFileSync(ins.path.join(pageDir,ins.smallCamel + '/index.js'), fragContent);
 
-let tplPageFile = ins.path.join(ins.tplDir, 'pages.js');
+let tplPageFile = ins.path.join(ins.tplDir, 'page.js');
 let pageContent = ins.fs.readFileSync(tplPageFile, "utf-8").replace(/bigCamel/g, ins.bigCamel)
   .replace(/smallCamel/g, ins.smallCamel);
 ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/' + ins.smallCamel + '.js'), pageContent);
@@ -35,11 +35,9 @@ ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/action.js'), acti
 //新建reducers
 let reducerFragPath = ins.path.join(pageDir, '/global/index.js');
 let reducerFragContent = ins.fs.readFileSync(reducerFragPath, "utf-8");
-let reducerImport = "import { " + ins.smallCamel + "Reducer } from '\.\/" + ins.smallCamel + "'";
-
+let reducerImport = "import { " + ins.smallCamel + "Reducer } from '\..\/" + ins.smallCamel + "/reducer'";
 reducerFragContent = reducerFragContent.replace(/(import .* from .*;)([\n]*const)/, "$1\n" + reducerImport + ";$2")
   .replace(/([\s\n]}\);)/g, "\n ," + ins.smallCamel + ":" + ins.smallCamel + "Reducer$1");
-  console.log(reducerFragContent);
  ins.fs.writeFileSync(reducerFragPath, reducerFragContent);
 
 let reducerFile = ins.path.join(ins.tplDir, 'reducer.js');
@@ -49,10 +47,11 @@ ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/reducer.js'), red
 
 //新建actionType
 let actionTypeStr =
-  `export const ${ins.smallCamel}Type = mirror([
+  `import mirror from 'mirror-creator';
+  export const ${ins.smallCamel}Type = mirror([
   'GET_${ins.smallCamel.toUpperCase()}_DATA',
 ],'${ins.smallCamel}/');`;
-ins.fs.writeFileSync(ins.path.join(pageDir,ins.smallCamel+'/actionType.js'), apiStr);
+ins.fs.writeFileSync(ins.path.join(pageDir,ins.smallCamel+'/actionType.js'), actionTypeStr);
 
 //新建api
 let apiStr =

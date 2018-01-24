@@ -7,6 +7,7 @@ import Home from'./pages/home'
 import NoExist from './pages/except/404';
 import NoAuth from './pages/except/403';
 
+
 const Routers = <Route path="/" component={DimrayTheme}>
   <IndexRoute component={Home}></IndexRoute>
   <Route path="home" component={Home}></Route>

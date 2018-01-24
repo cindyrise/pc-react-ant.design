@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import { homeReducer } from '../home/reducer';
 import { globalReducer } from './reducer';
+import { homeReducer } from '../home/reducer';
+
+
 
 const appReducer = combineReducers({
   routing,
-  home: homeReducer,
-  global: globalReducer
+  global:globalReducer,
+  home: homeReducer
 });
 
 export default appReducer;
