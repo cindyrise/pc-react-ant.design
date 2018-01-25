@@ -1,6 +1,6 @@
 {
-  "name": "logstatic",
-  "version": "1.0.0",
+  "name": "dtux-team",
+  "version": "1.2.2",
   "description": "front end files of log app",
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile --config ./build/prod.js",
