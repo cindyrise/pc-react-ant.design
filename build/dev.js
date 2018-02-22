@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../');
-const buildPath = path.resolve(rootPath, './src/public');
+//const buildPath = path.resolve(rootPath, './src/public');
 const serverConfig = require('./server.js')
 /**
  * Env
@@ -102,22 +102,6 @@ module.exports = function makeWebpackConfig() {
     })
   }
 
-  /**
-   * PostCSS
-   * Reference: https://github.com/postcss/autoprefixer-core
-   * Add vendor prefixes to your css
-   */
-  // config.postcss = [
-  //   autoprefixer({
-  //     browsers: ['last 2 version']
-  //   })
-  // ];
-
-  /**
-   * Plugins
-   * Reference: http://webpack.github.io/docs/configuration.html#plugins
-   * List: http://webpack.github.io/docs/list-of-plugins.html
-   */
   config.plugins = [
     new webpack.DefinePlugin({
       __PRODUCTION: JSON.stringify(false)
@@ -130,13 +114,13 @@ module.exports = function makeWebpackConfig() {
     config.plugins.push(
       new HtmlWebpackPlugin({
         filename: 'webapp.html',
-        template: path.resolve(__dirname, '../src/public/pages/webapp.ejs'),
+        template: path.resolve(__dirname, '../src/webapp.ejs'),
         inject: 'body',
         chunks: ['vendor', 'webapp'],
         showErrors: true,
         assets: {
           favicon: 'img/favicon.ico',
-          config_js: 'config/config.dev.js'
+          config_js: './config.dev.js'
         }
       }),
       new webpack.HotModuleReplacementPlugin(),
@@ -153,27 +137,18 @@ module.exports = function makeWebpackConfig() {
     )
   }
 
-  // Add build specific plugins
-  if (isProd) {
-    config.plugins.push(
-      new CopyWebpackPlugin([{
-        from: path.resolve(__dirname, '../src/public')
-      }])
-    )
-  } else {
-    config.plugins.push(new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, '../mock')
-    }]))
-  }
+  config.plugins.push(new CopyWebpackPlugin([{
+    from: path.resolve(__dirname, '../mock')
+  }]),
+  new CopyWebpackPlugin([{
+    from: path.resolve(rootPath, './config')
+  }]),
+  new CopyWebpackPlugin([{
+    from: path.resolve(rootPath, './src/webapp/assets')
+  }]));
 
-
-  /**
-   * Dev server configuration
-   * Reference: http://webpack.github.io/docs/configuration.html#devserver
-   * Reference: http://webpack.github.io/docs/webpack-dev-server.html
-   */
   config.devServer = {
-    contentBase: buildPath,
+    contentBase: rootPath,
     host: serverConfig.host,
     hot: true,
     port: serverConfig.port,

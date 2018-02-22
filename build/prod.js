@@ -31,7 +31,7 @@ module.exports = function makeWebpackConfig() {
     vendor: ['react', 'react-dom', 'react-router', 'react-color',
       'moment', 'react-ace', 'd3', 'recharts', 'lodash'
     ],
-    webapp: [path.resolve(__dirname, '../src/webapp/app.js')],
+    webapp: [path.resolve(__dirname, '../src/webapp/App.js')],
   };
 
   config.output = isTest ? {} : {
@@ -111,12 +111,12 @@ module.exports = function makeWebpackConfig() {
     config.plugins.push(
       new HtmlWebpackPlugin({
         filename: 'webapp.html',
-        template: path.resolve(__dirname, '../src/public/pages/webapp.ejs'),
+        template: path.resolve(__dirname, '../src/webapp.ejs'),
         inject: 'body',
         chunks: ['vendor', 'webapp'],
         assets: {
           favicon: 'img/favicon.ico',
-          config_js: 'config/config.js'
+          config_js: './config.js'
         },
         minify: {
           removeComments: true,
@@ -159,8 +159,8 @@ module.exports = function makeWebpackConfig() {
       }),
       // Copy assets from the public folder
       // Reference: https://github.com/kevlened/copy-webpack-plugin
-      new CopyWebpackPlugin([{
-        from: path.resolve(__dirname, '../src/public'),
+     new CopyWebpackPlugin([{
+        from: path.resolve(rootPath, './config')
       }])
     )
   }
