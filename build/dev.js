@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../');
-//const buildPath = path.resolve(rootPath, './src/public');
 const serverConfig = require('./server.js')
 /**
  * Env

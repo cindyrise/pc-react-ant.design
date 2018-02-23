@@ -31,7 +31,7 @@ module.exports = function makeWebpackConfig() {
     vendor: ['react', 'react-dom', 'react-router', 'react-color',
       'moment', 'react-ace', 'd3', 'recharts', 'lodash'
     ],
-    webapp: [path.resolve(__dirname, '../src/webapp/App.js')],
+    webapp: [path.resolve(__dirname, '../src/webapp/app.js')],
   };
 
   config.output = isTest ? {} : {
@@ -161,6 +161,9 @@ module.exports = function makeWebpackConfig() {
       // Reference: https://github.com/kevlened/copy-webpack-plugin
      new CopyWebpackPlugin([{
         from: path.resolve(rootPath, './config')
+      }]),
+      new CopyWebpackPlugin([{
+        from: path.resolve(rootPath, './src/webapp/assets')
       }])
     )
   }
