@@ -28,9 +28,8 @@ module.exports = function makeWebpackConfig() {
   let config = {};
 
   config.entry = isTest ? {} : {
-    vendor: ['react', 'react-dom', 'react-router', 'react-color',
-      'moment', 'react-ace', 'd3', 'recharts', 'lodash'
-    ],
+    vendor: ['react', 'react-dom', 'react-router',
+      'moment'],
     webapp: [path.resolve(__dirname, '../src/webapp/app.js')],
   };
 
@@ -154,11 +153,7 @@ module.exports = function makeWebpackConfig() {
         chunks: ['webapp'],
         filename: 'vendor.js',
         minChunks: Infinity,
-        // (with more entries, this ensures that no other module
-        //  goes into the vendor chunk)
       }),
-      // Copy assets from the public folder
-      // Reference: https://github.com/kevlened/copy-webpack-plugin
      new CopyWebpackPlugin([{
         from: path.resolve(rootPath, './config')
       }]),
