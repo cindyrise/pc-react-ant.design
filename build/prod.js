@@ -18,7 +18,6 @@ let ENV = process.env.npm_lifecycle_event;
 let isTest = ENV === 'test' || ENV === 'test-watch';
 let isProd = ENV === 'build';
 let extractCSS = new ExtractTextPlugin('[name].bundle.css');
-console.log(ENV, 99000);
 module.exports = function makeWebpackConfig() {
   /**
    * Config

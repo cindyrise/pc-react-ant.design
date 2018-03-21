@@ -23,7 +23,7 @@ module.exports = function makeWebpackConfig() {
   let config = {};
   config.entry = isTest ? {} : {
     vendor: ['react', 'react-dom', 'react-router',
-      'moment', 'recharts'],
+      'moment'],
     webapp: [
       'react-hot-loader/patch',
       `webpack-dev-server/client?http://${serverConfig.host}:${serverConfig.port}`,
