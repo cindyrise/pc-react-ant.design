@@ -52,13 +52,13 @@ export default class DimrayTheme extends React.Component {
     const { isInIframe, isSiderShow } = this.state;
     return (
       <Layout
-        style={{ flexDirection: LOGAPICONF.isTopNav ? undefined : "row" }}
+        style={{ flexDirection: FRONT_CONF.isTopNav ? undefined : "row" }}
         className={classnames("g-dashbdapp", {
           "s-fullscreen": isFullScreen,
           "s-dark": theme === 2
         })}
       >
-        {LOGAPICONF.isTopNav ? (
+        {FRONT_CONF.isTopNav ? (
           <TopNav {...this.props} />
         ) : (
           <SiderNav

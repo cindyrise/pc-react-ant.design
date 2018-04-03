@@ -17,7 +17,7 @@ const buildPath = path.resolve(rootPath, 'dist');
 let ENV = process.env.npm_lifecycle_event;
 let isTest = ENV === 'test' || ENV === 'test-watch';
 let isProd = ENV === 'build';
-let extractCSS = new ExtractTextPlugin('[name].bundle.css');
+let extractCSS = new ExtractTextPlugin({filename: 'styles.css'});
 module.exports = function makeWebpackConfig() {
   /**
    * Config
@@ -29,14 +29,14 @@ module.exports = function makeWebpackConfig() {
   config.entry = isTest ? {} : {
     vendor: ['react', 'react-dom', 'react-router',
       'moment'],
-    webapp: [path.resolve(__dirname, '../src/webapp/app.js')],
+    app: [path.resolve(__dirname, '../src/webapp/app.js')],
   };
 
   config.output = isTest ? {} : {
+    filename: '[name].[hash].js',
     path: buildPath,
-    publicPath: '/',
-    filename: isProd ? '[name].bundle.js' : '[name].bundle.js',
-    chunkFilename: isProd ? '[name].bundle.js' : '[name].bundle.js'
+    publicPath: './',
+    chunkFilename: '[name].[hash].js'
   };
 
   config.module = {
@@ -108,13 +108,13 @@ module.exports = function makeWebpackConfig() {
   if (!isTest) {
     config.plugins.push(
       new HtmlWebpackPlugin({
-        filename: 'webapp.html',
+        filename: 'index.html',
         template: path.resolve(__dirname, '../src/webapp.ejs'),
         inject: 'body',
-        chunks: ['vendor', 'webapp'],
+        chunks: ['vendor', 'app'],
         assets: {
           favicon: 'img/favicon.ico',
-          config_js: './config.js'
+          config_js: '/conf.prod.js'
         },
         minify: {
           removeComments: true,
@@ -126,7 +126,7 @@ module.exports = function makeWebpackConfig() {
           keepClosingSlash: true,
           minifyJS: true,
           minifyCSS: true,
-          minifyURLs: true,
+          //minifyURLs: true,
         }
       }),
       extractCSS
@@ -149,12 +149,11 @@ module.exports = function makeWebpackConfig() {
       }),
       new webpack.optimize.CommonsChunkPlugin({
         name: "vendor",
-        chunks: ['webapp'],
         filename: 'vendor.js',
         minChunks: Infinity,
       }),
      new CopyWebpackPlugin([{
-        from: path.resolve(rootPath, './config')
+        from: path.resolve(rootPath, './src/webapp/config')
       }]),
       new CopyWebpackPlugin([{
         from: path.resolve(rootPath, './src/webapp/assets')
@@ -175,7 +174,7 @@ module.exports = function makeWebpackConfig() {
     打包例外的第三方库
   */
   config.externals = {
-    'LOGAPICONF': 'LOGAPICONF'
+    'FRONT_CONF': 'FRONT_CONF'
   };
   return config;
 }();

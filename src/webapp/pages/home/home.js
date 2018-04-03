@@ -44,15 +44,15 @@ export default class Home extends Component {
   render() {
     return (
       <Layout className="layout">
-          <div
-            style={{
-              color: "blue",
+          <div  style={{
+              color: "red",
               fontSize: "24px",
               marginTop: "230px",
               textAlign: "center"
             }}
           >
            恭喜，home主页新建成功,DIY YOUE CODE!!!. 
+           <a href="/test/exit">noauth</a>
           </div>
       </Layout>
     );

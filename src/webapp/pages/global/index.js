@@ -5,10 +5,9 @@ import { homeReducer } from '../home/reducer';
 
 
 
-const appReducer = combineReducers({
-  routing,
+const appReducer = {
   global:globalReducer,
   home: homeReducer
-});
+};
 
 export default appReducer;

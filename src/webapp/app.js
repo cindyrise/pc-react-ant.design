@@ -1,21 +1,33 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux';
-import { Router, hashHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-//import createHistory from 'history/createBrowserHistory'
-//import createHistory from 'history/createBrowserHistory'
-
-import configStore from './configStore';
+import createHistory from 'history/createBrowserHistory'
+//import createHistory from "history/createHashHistory";
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import Routers from './routers';
+import { AppContainer } from 'react-hot-loader'
+import { createStore, applyMiddleware, combineReducers,compose } from 'redux'
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
+import appReducer from './pages/global';
 
-const store = configStore();
-const history =syncHistoryWithStore(hashHistory, store);
-//const history = createHistory()
+const history = createHistory()
+const middleware = routerMiddleware(history)
 
-render(
-    <Provider store={ store }>
-      <Router routes={ Routers } history={ history } />
-    </Provider>,
-    document.getElementById('j-webapp')
-);
+const middlewares = [thunk, middleware]
+
+const store = createStore(
+  combineReducers({ routing: routerReducer, ...appReducer }),
+  __PRODUCTION ? applyMiddleware(...middlewares): composeWithDevTools(applyMiddleware(...middlewares))
+)
+const render = Component =>
+    ReactDOM.render(
+       <AppContainer>
+           <Provider store={ store }>
+                <Component />
+            </Provider>
+      </AppContainer>,
+       document.getElementById('j-webapp')
+    )
+
+render(Routers)

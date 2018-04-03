@@ -57,7 +57,7 @@ export default class TopNav extends React.Component {
         >{ tel }</a>
       </Menu.Item>
       <Menu.Item>
-        <a href={LOGAPICONF.LOGINURL}>用户中心</a>
+        <a href={FRONT_CONF.LOGINURL}>用户中心</a>
       </Menu.Item>
       <Menu.Item>
         <a href="javascript:void(0)"
@@ -84,7 +84,7 @@ export default class TopNav extends React.Component {
     return <Header className="m-header">
       <div className="logo">
         <a href="/webapp.html#/home">
-          <img src={ LOGAPICONF.COMPANYLOGO } alt="EasyLogo"/>
+          <img src={ FRONT_CONF.COMPANY_LOGO } alt="EasyLogo"/>
         </a>
       </div>
       <ul className="user f-fr">
