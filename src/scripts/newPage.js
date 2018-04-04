@@ -57,7 +57,7 @@ ins.fs.writeFileSync(ins.path.join(pageDir,ins.smallCamel+'/actionType.js'), act
 //新建api
 let apiStr =
   `import http from '../utils/http'
-import apiUrl from '../features/constants/apis';
+   import apiUrl from '../constants/apis'
 export default {
   get${ins.bigCamel}Data(params) {
     return http.post(apiUrl.getUserData, params);
