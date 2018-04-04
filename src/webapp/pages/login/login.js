@@ -34,10 +34,10 @@ export default class Login extends Component {
   render() {
     return (  
       <Layout className="layout">
-      <div style={{ height: "900px", padding: "20px" }}>
+      <div style={{ minHeight: "1200px", padding: "20px" }} className="login-bg">
         <div
           style={{
-            color: "blue",
+            color: "white",
             fontSize: "24px",
             marginTop: "230px",
             textAlign: "center"
