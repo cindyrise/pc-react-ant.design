@@ -30,7 +30,7 @@ ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/' + ins.smallCame
 //新建action
 let actionFile = ins.path.join(ins.tplDir, 'action.js');
 let actionContent = ins.fs.readFileSync(actionFile, "utf-8").replace(/smallCamel/g, ins.smallCamel)
-  .replace(/Handle/g, ins.bigCamel).replace(/TYPE/g, ins.smallCamel.toUpperCase());
+  .replace(/bigCamel/g, ins.bigCamel).replace(/TYPE/g, ins.smallCamel.toUpperCase());
 ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/action.js'), actionContent);
 
 //新建reducers
@@ -38,7 +38,7 @@ let reducerFragPath = ins.path.join(pageDir, '/global/index.js');
 let reducerFragContent = ins.fs.readFileSync(reducerFragPath, "utf-8");
 let reducerImport = "import { " + ins.smallCamel + "Reducer } from '\..\/" + ins.smallCamel + "/reducer'";
 reducerFragContent = reducerFragContent.replace(/(import .* from .*;)([\n]*const)/, "$1\n" + reducerImport + ";$2")
-  .replace(/([\s\n]}\);)/g, "\n ," + ins.smallCamel + ":" + ins.smallCamel + "Reducer$1");
+  .replace(/(};)/g, "\t"+ins.smallCamel + ":" + ins.smallCamel + "Reducer,$1");
  ins.fs.writeFileSync(reducerFragPath, reducerFragContent);
 
 let reducerFile = ins.path.join(ins.tplDir, 'reducer.js');
