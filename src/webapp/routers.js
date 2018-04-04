@@ -21,7 +21,7 @@ export default class Routers extends React.Component {
           <Route path="/noexit" component={NoExist} />
           <Route path="/auth" component={NoAuth} />
         </GlobalTpl>
-        </Switch> 
+			</Switch> 
       </Router>
     );
   }

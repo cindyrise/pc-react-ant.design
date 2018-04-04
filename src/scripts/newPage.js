@@ -10,9 +10,9 @@ if (routerContent.indexOf(ins.smallCamel) > -1) {
   ins.log(ins.chalk.yellow(ins.chalk.bgBlue('命名重复或者传入参数为空')));
   return;
 }
-let routerPath = "<Route path='" + ins.smallCamel + "' component={" + ins.bigCamel + "}></Route>";
+let routerPath = "<Route path='/" + ins.smallCamel + "' component={" + ins.bigCamel + "}></Route>";
 routerContent = routerContent.replace(/(import .* from .*;)([\s\n]*const)/, "$1\nimport " + ins.bigCamel + " from \'./pages/" + ins.smallCamel + "\';$2")
-  .replace(/(<Switch>)/g, "$1\n  " + routerPath);
+  .replace(/(<\/Switch>)/g, "\t"+routerPath+"\n\t\t\t\$1");
 ins.fs.writeFileSync(routerFile, routerContent);
 
 //新建页面
@@ -72,7 +72,7 @@ let styleStr =
  font-size:36px;
 }`
 ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/style.scss'), styleStr);
-ins.log(ins.chalk.yellow(ins.chalk.bgBlue(`新建页面成功访问地址:http://${serverConfig.host}:${serverConfig.port}/webapp.html#/${ins.smallCamel}`)));
+ins.log(ins.chalk.yellow(ins.chalk.bgBlue(`新建页面成功访问地址:http://${serverConfig.host}:${serverConfig.port}/${ins.smallCamel}`)));
 
 
 
