@@ -24,14 +24,7 @@ export default class TopNav extends React.Component {
   componentDidMount() {}
 
   logout() {
-    // ajax.logout().then(res => {
-    //   if(window != top){
-    //     top.location.href = LOGAPICONF.LOGINURL;
-    //   }
-    //   else{
-    //     window.location.href = LOGAPICONF.LOGINURL;
-    //   }
-    // });
+    this.props.history.push('/login');
   }
 
   render() {

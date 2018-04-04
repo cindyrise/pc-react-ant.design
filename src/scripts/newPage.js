@@ -12,7 +12,7 @@ if (routerContent.indexOf(ins.smallCamel) > -1) {
 }
 let routerPath = "<Route path='" + ins.smallCamel + "' component={" + ins.bigCamel + "}></Route>";
 routerContent = routerContent.replace(/(import .* from .*;)([\s\n]*const)/, "$1\nimport " + ins.bigCamel + " from \'./pages/" + ins.smallCamel + "\';$2")
-  .replace(/(<IndexRoute component={Home}><\/IndexRoute>)/g, "$1\n  " + routerPath);
+  .replace(/(<Switch>)/g, "$1\n  " + routerPath);
 ins.fs.writeFileSync(routerFile, routerContent);
 
 //新建页面
