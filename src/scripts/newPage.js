@@ -4,15 +4,15 @@ let apiDir = ins.path.join(__dirname, '../webapp/api');
 let pageDir = ins.path.join(__dirname, '../webapp/pages/');
 let routerFile = ins.path.join(__dirname, '../webapp/routers.js');
 
-//追加router
-let routerContent = ins.fs.readFileSync(routerFile).toString();
+// //追加router
+ let routerContent = ins.fs.readFileSync(routerFile).toString();
 if (routerContent.indexOf(ins.smallCamel) > -1) {
   ins.log(ins.chalk.yellow(ins.chalk.bgBlue('命名重复或者传入参数为空')));
   return;
 }
 let routerPath = "<Route path='/" + ins.smallCamel + "' component={" + ins.bigCamel + "}></Route>";
 routerContent = routerContent.replace(/(import .* from .*;)([\s\n]*const)/, "$1\nimport " + ins.bigCamel + " from \'./pages/" + ins.smallCamel + "\';$2")
-  .replace(/(<\/Switch>)/g, "\t"+routerPath+"\n\t\t\t\$1");
+  .replace(/(<Switch>)/g, "$1\n\t\t\t\t"+routerPath);
 ins.fs.writeFileSync(routerFile, routerContent);
 
 //新建页面

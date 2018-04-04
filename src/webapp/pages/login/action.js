@@ -1,14 +1,14 @@
-import { smallCamelType } from './actionType';
+import { loginType } from './actionType';
 import { message } from 'antd';
-import ajax from '../../api/smallCamel';
-export const smallCamelAction = {
-  getbigCamelData() {
+import ajax from '../../api/login';
+export const loginAction = {
+  getLoginData() {
     return dispatch => {
-      ajax.getbigCamelData().then(res => {
+      ajax.getLoginData().then(res => {
         const { data, result, result_code, result_message } = res;
         if (result) {
           dispatch({
-            type: smallCamelType.GET_TYPE_DATA,
+            type: loginType.GET_LOGIN_DATA,
             payload: data
           });
         } else {
