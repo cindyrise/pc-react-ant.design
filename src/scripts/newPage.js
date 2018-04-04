@@ -38,7 +38,7 @@ let reducerFragPath = ins.path.join(pageDir, '/global/index.js');
 let reducerFragContent = ins.fs.readFileSync(reducerFragPath, "utf-8");
 let reducerImport = "import { " + ins.smallCamel + "Reducer } from '\..\/" + ins.smallCamel + "/reducer'";
 reducerFragContent = reducerFragContent.replace(/(import .* from .*;)([\n]*const)/, "$1\n" + reducerImport + ";$2")
-  .replace(/(};)/g, "\t"+ins.smallCamel + ":" + ins.smallCamel + "Reducer,$1");
+  .replace(/(};)/g, "\t"+ins.smallCamel + ":" + ins.smallCamel + "Reducer,$1\n");
  ins.fs.writeFileSync(reducerFragPath, reducerFragContent);
 
 let reducerFile = ins.path.join(ins.tplDir, 'reducer.js');
