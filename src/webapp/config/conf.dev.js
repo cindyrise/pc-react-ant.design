@@ -4,6 +4,6 @@ var FRONT_CONF = {
   APP_DOMAIN: '.dtstack.net', // 云日志部署的域
   APP_UIC_HOST: '//dtuic.test.dtstack.net:85/', // uic的host
   LOGIN_URL: '//dtuic.test.dtstack.net:85/', // 登录跳转地址
-  COMPANY_LOGO: 'img/yunrizhi_03.svg', // 日志logo
+  COMPANY_LOGO: '/img/yunrizhi_03.svg', // 日志logo
   FOOTER_RIGHT: (new Date()).getFullYear() + ' 杭州玳数科技有限公司 浙ICP备15044486号-1', // 统一页脚版权文案
 }

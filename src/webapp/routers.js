@@ -1,6 +1,6 @@
 import { asyncComponent } from "react-async-component";
 import React from "react";
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, Router, Switch,Redirect } from "react-router-dom";
 import GlobalTpl from "./pages/global/globalTpl";
 
 import Home from "./pages/home";
@@ -9,8 +9,8 @@ import NoAuth from "./pages/except/403";
 import createHistory from "history/createBrowserHistory";
 //import createHistory from "history/createHashHistory";
 import Login from './pages/login';
-const history = createHistory();
-const location = history.location;
+const history = createHistory(); //暂无使用
+//const location = history.location;
 
 export default class Routers extends React.Component {
   render() {
@@ -18,11 +18,13 @@ export default class Routers extends React.Component {
       <Router history={history}>
        <Switch>
 				<Route path='/login' component={Login}></Route>
-        <GlobalTpl>
-          <Route path="/" component={Home} />
-          <Route path="/noexit" component={NoExist} />
-          <Route path="/auth" component={NoAuth} />
-        </GlobalTpl>
+        <Route  path="/index" component={GlobalTpl}></Route> 
+        <Route  path="/user" render={({ match }) => {
+          return (
+            <Route path={`${match.path}/login`} component={Login}></Route>
+          )
+        }}/>
+    
 			</Switch> 
       </Router>
     );

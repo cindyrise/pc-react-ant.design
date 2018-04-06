@@ -9,7 +9,7 @@
 			"name":"主页",
 			"pid":0,
 			"type":0,
-			"url":"/webapp.html#/home"
+			"url":"/home"
 		},
 		{
 			"checked":true,
@@ -20,7 +20,7 @@
 			"name":"搜索",
 			"pid":0,
 			"type":0,
-			"url":"/webapp.html#/nav"
+			"url":"/nav"
 		},
 		{
 			"checked":true,
@@ -30,7 +30,7 @@
 			"name":"实时",
 			"pid":0,
 			"type":0,
-			"url":"/webapp.html#/2_home"
+			"url":"/2_home"
 		},
 		{
 			"checked":true,
@@ -47,7 +47,7 @@
 							"name":"选择上传方式",
 							"pid":523,
 							"type":0,
-							"url":"/webapp.html#/type"
+							"url":"/type"
 						},
 						{
 							"checked":true,
@@ -58,7 +58,7 @@
 							"name":"Agent管控",
 							"pid":523,
 							"type":0,
-							"url":"/webapp.html#/agent"
+							"url":"/agent"
 						}
 					],
 					"code":"M_UPLOAD",
@@ -77,7 +77,7 @@
 					"name":"解析规则",
 					"pid":522,
 					"type":0,
-					"url":"/webapp.html#/setting/parserrulelist"
+					"url":"/setting/parserrulelist"
 				},
 				{
 					"checked":true,
@@ -91,7 +91,7 @@
 							"name":"文件列表",
 							"pid":538,
 							"type":0,
-							"url":"/webapp.html#/setting/datasourcelist "
+							"url":"/setting/datasourcelist "
 						}
 					],
 					"code":"M_DATA_AGENT",
@@ -113,7 +113,7 @@
 							"name":"脱敏概况",
 							"pid":540,
 							"type":0,
-							"url":"/webapp.html#/setting/filterruleresume"
+							"url":"/setting/filterruleresume"
 						},
 						{
 							"checked":true,
@@ -124,7 +124,7 @@
 							"name":"规则列表",
 							"pid":540,
 							"type":0,
-							"url":"/webapp.html#/setting/filterrulelist"
+							"url":"/setting/filterrulelist"
 						}
 					],
 					"code":"M_FILTER",
@@ -143,7 +143,7 @@
 					"name":"容量管理",
 					"pid":522,
 					"type":0,
-					"url":"/webapp.html#/setting/capacitymanage"
+					"url":"/setting/capacitymanage"
 				},
 				{
 					"checked":true,
@@ -154,7 +154,7 @@
 					"name":"日志投递",
 					"pid":522,
 					"type":0,
-					"url":"/webapp.html#/odps"
+					"url":"/odps"
 				},
 				{
 					"checked":true,
@@ -168,7 +168,7 @@
 							"name":"用户管理",
 							"pid":550,
 							"type":0,
-							"url":"/webapp.html#/setting/authuserlist"
+							"url":"/setting/authuserlist"
 						},
 						{
 							"checked":true,
@@ -179,7 +179,7 @@
 							"name":"功能权限",
 							"pid":550,
 							"type":0,
-							"url":"/webapp.html#/setting/authfunclist"
+							"url":"/setting/authfunclist"
 						},
 						{
 							"checked":true,
@@ -190,7 +190,7 @@
 							"name":"数据权限",
 							"pid":550,
 							"type":0,
-							"url":"/webapp.html#/setting/authdatalist"
+							"url":"/setting/authdatalist"
 						},
 						{
 							"checked":true,
@@ -201,7 +201,7 @@
 							"name":"组织架构",
 							"pid":550,
 							"type":0,
-							"url":"/webapp.html#/setting/authstructure"
+							"url":"/setting/authstructure"
 						}
 					],
 					"code":"M_PERMS_AGENT",
@@ -231,7 +231,7 @@
 					"name":"告警历史",
 					"pid":506,
 					"type":0,
-					"url":"/webapp.html#/alert/history"
+					"url":"/alert/history"
 				},
 				{
 					"checked":true,
@@ -242,7 +242,7 @@
 					"name":"告警规则",
 					"pid":506,
 					"type":0,
-					"url":"/webapp.html#/alert/rulelist"
+					"url":"/alert/rulelist"
 				},
 				{
 					"checked":true,
@@ -256,7 +256,7 @@
 							"name":"告警人",
 							"pid":513,
 							"type":0,
-							"url":"/webapp.html#/alert/userlist"
+							"url":"/alert/userlist"
 						},
 						{
 							"checked":true,
@@ -267,7 +267,7 @@
 							"name":"告警分组",
 							"pid":513,
 							"type":0,
-							"url":"/webapp.html#/alert/grouplist"
+							"url":"/alert/grouplist"
 						}
 					],
 					"code":"M_RCV_SET",
@@ -284,7 +284,7 @@
 			"name":"告警",
 			"pid":0,
 			"type":0,
-			"url":"/webapp.html#/3_home"
+			"url":"/3_home"
 		}
 	],
 	"result":true,

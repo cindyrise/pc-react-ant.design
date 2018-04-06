@@ -7,6 +7,11 @@ import TopNav from "../../components/topnav";
 import SiderNav from "../../components/siderNav";
 import { globalAction } from "./action";
 import "../../assets/styles/main.scss";
+import { Route, Router, Switch,Redirect } from "react-router-dom";
+import Home from "../home";
+import HomeTpl from "../home/homeTpl";
+import NoExist from "../except/404";
+import NoAuth from "../except/403";
 const { Footer } = Layout;
 
 @connect(
@@ -32,7 +37,9 @@ export default class GlobalTpl extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props.match,1213213,this.props);
+  }
   componentWillReceiveProps(nextProps) {
     setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
@@ -47,7 +54,8 @@ export default class GlobalTpl extends React.Component {
   };
 
   render() {
-    const { children, isFullScreen, theme, navData } = this.props;
+    //console.log(this.props.match,1213213,this.props);
+    const { children, isFullScreen, theme, navData,match } = this.props;
     let { pathname, hash } = window.location;
     const { isInIframe, isSiderShow } = this.state;
     return (
@@ -68,7 +76,9 @@ export default class GlobalTpl extends React.Component {
           />
         )}
         <div style={{minHeight: "900px", padding: "15px" }}>
-          {children || "Ooops! we're working on it"}
+         <Route exact path={`${match.path}`} component={HomeTpl}></Route>
+         <Route path={`${match.path}/home`} component={HomeTpl}></Route>
+         {/* {this.props.children||'无组件渲染'} */}
         </div>
         <Footer style={{ textAlign: "center" }}>
           home ©2016 Created by charles

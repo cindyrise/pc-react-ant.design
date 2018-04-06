@@ -52,7 +52,7 @@ export default class Home extends Component {
             }}
           >
            恭喜，home主页新建成功,DIY YOUE CODE!!!. 
-           <a href="/login">noauth</a>
+           <a href="/home">noauth</a>
           </div>
       </Layout>
     );

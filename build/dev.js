@@ -34,6 +34,7 @@ module.exports = function makeWebpackConfig() {
   };
 
   config.output = isTest ? {} : {
+    publicPath: "/",
     filename: isProd ? '[name].bundle.js' : '[name].bundle.js',
     chunkFilename: isProd ? '[name].bundle.js' : '[name].bundle.js',
     sourceMapFilename: '[name].map'
@@ -64,11 +65,12 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.ejs$/,
         use: ["ejs-loader"]
-      }, {
-        test: /\.(js|ts)$/,
-        use: ["strip-loader?strip[]=debug,strip[]=console.log"],
-        exclude: /node_modules/
-      },
+      }, 
+      // {
+      //   test: /\.(js|ts)$/,
+      //   use: ["strip-loader?strip[]=debug,strip[]=console.log"],
+      //   exclude: /node_modules/
+      // },
       ]
     };
   config.resolve = {
@@ -137,8 +139,9 @@ module.exports = function makeWebpackConfig() {
     },
     host: serverConfig.host,
     port: serverConfig.port,
+    publicPath: "/",
     historyApiFallback: true,
-    //publicPath: baseConf.output.publicPath,
+    disableHostCheck: true,
     proxy: [
       {
         path: '/log/api/v2/**',
