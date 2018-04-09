@@ -17,7 +17,7 @@ export default class Routers extends React.Component {
     return (
       <Router history={history}>
        <Switch>
-				<Route path='/login' component={Login}></Route>
+       <Route exact path='/' component={Login}></Route>
         <Route  path="/index" component={GlobalTpl}></Route> 
         <Route  path="/user" render={({ match }) => {
           return (

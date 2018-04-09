@@ -78,7 +78,6 @@ export default class GlobalTpl extends React.Component {
         <div style={{minHeight: "900px", padding: "15px" }}>
          <Route exact path={`${match.path}`} component={HomeTpl}></Route>
          <Route path={`${match.path}/home`} component={HomeTpl}></Route>
-         {/* {this.props.children||'无组件渲染'} */}
         </div>
         <Footer style={{ textAlign: "center" }}>
           home ©2016 Created by charles

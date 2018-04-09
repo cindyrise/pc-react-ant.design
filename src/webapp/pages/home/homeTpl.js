@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { Layout, Icon } from "antd";
 import classnames from "classnames";
 import Home from "../home";
-import NoExist from "../except/404";
-import NoAuth from "../except/403";
 import { Route, Router, Switch,Redirect } from "react-router-dom";
 const { Footer } = Layout;
 
@@ -32,13 +30,8 @@ export default class HomeTpl extends React.Component {
     return (
       <Layout>
         <div style={{minHeight: "900px", padding: "15px" }}>
-         <Route  exact path={`${match.path}/center`} component={NoExist}></Route>
-         <Route path={`${match.path}/test`} component={NoAuth}></Route>
-         {/* {this.props.children||'无组件渲染'} */}
+         <Home/>
         </div>
-        <Footer style={{ textAlign: "center" }}>
-          home ©2016 Created by charles
-        </Footer>
       </Layout>
     );
   }

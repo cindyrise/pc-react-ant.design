@@ -106,15 +106,14 @@ module.exports = function makeWebpackConfig() {
 
   // Skip rendering index.html in test mode
   if (!isTest) {
-    config.plugins.push(
-      new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: path.resolve(__dirname, '../src/webapp.ejs'),
-        inject: 'body',
-        chunks: ['vendor', 'app'],
+    config.plugins.push(new HtmlWebpackPlugin({
+        filename: "index.html",
+        template: path.resolve(__dirname, "../src/webapp.ejs"),
+        inject: "body",
+        chunks: ["vendor", "app"],
         assets: {
-          favicon: 'img/favicon.ico',
-          config_js: '/conf.prod.js'
+          favicon: "img/favicon.ico",
+          config_js: "/conf.prod.js"
         },
         minify: {
           removeComments: true,
@@ -125,12 +124,10 @@ module.exports = function makeWebpackConfig() {
           removeStyleLinkTypeAttributes: true,
           keepClosingSlash: true,
           minifyJS: true,
-          minifyCSS: true,
+          minifyCSS: true
           //minifyURLs: true,
         }
-      }),
-      extractCSS
-    )
+      }), extractCSS);
   }
 
   // Add build specific plugins
