@@ -24,7 +24,6 @@
     "core-js": "^2.4.1",
     "echarts": "^4.0.4",
     "immutable": "^3.8.2",
-    "lodash": "^4.17.5",
     "mirror-creator": "^1.1.0",
     "moment": "^2.18.1",
     "object-assign": "^4.1.1",
