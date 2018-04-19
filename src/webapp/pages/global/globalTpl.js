@@ -76,8 +76,9 @@ export default class GlobalTpl extends React.Component {
           />
         )}
         <div style={{minHeight: "900px", padding: "15px" }}>
-         <Route exact path={`${match.path}`} component={HomeTpl}></Route>
-         <Route path={`${match.path}/home`} component={HomeTpl}></Route>
+         <Route exact path={`${match.path}/home`} component={HomeTpl}></Route>
+         <Route path={`${match.path}/noexite`} component={NoExist}></Route>
+         <Route path={`${match.path}/noauth`} component={NoAuth}></Route>
         </div>
         <Footer style={{ textAlign: "center" }}>
           home ©2016 Created by charles

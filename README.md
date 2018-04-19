@@ -1,7 +1,7 @@
 **本项目升级到wepack3最新版，测试通过，快来体验吧！**
 #### 使用技术
 ```text
- 热更新、ES6/7、LESS、Router3、redux、webpack3、async／await、前端node服务器，按需加载...
+ 热更新、ES6/7、LESS、Router4、redux、webpack3、async／await、前端node服务器，按需加载...
 ```
 #### 客户端渲染
 ```

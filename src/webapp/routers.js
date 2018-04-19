@@ -17,14 +17,13 @@ export default class Routers extends React.Component {
     return (
       <Router history={history}>
        <Switch>
-       <Route exact path='/' component={Login}></Route>
+        <Route exact path='/' component={Login}></Route>
         <Route  path="/index" component={GlobalTpl}></Route> 
         <Route  path="/user" render={({ match }) => {
           return (
             <Route path={`${match.path}/login`} component={Login}></Route>
           )
         }}/>
-    
 			</Switch> 
       </Router>
     );
