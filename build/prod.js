@@ -28,7 +28,7 @@ module.exports = function makeWebpackConfig() {
 
   config.entry = isTest ? {} : {
     vendor: ['react', 'react-dom', 'react-router',
-      'moment'],
+      'moment','echarts'],
     app: [path.resolve(__dirname, '../src/webapp/app.js')],
   };
 
@@ -82,7 +82,6 @@ module.exports = function makeWebpackConfig() {
       "constants": path.resolve(__dirname, "../src/webapp/features/constants/"),
       "reducers": path.resolve(__dirname, "../src/webapp/features/reducers/"),
       "pages": path.resolve(__dirname, "../src/webapp/features/pages/"),
-      'apis': path.resolve(__dirname, '../src/webapp/api/'),
       "utils": path.resolve(__dirname, "../src/webapp/utils/"),
     }
   };

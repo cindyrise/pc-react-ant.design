@@ -21,10 +21,10 @@ export function authBeforeRes(response) {
 
 export function authAfterRes(response) {
     switch (response.result_code) {
-        case 1:
-            return response;
-        case 0: // 无权限，需要登录
-            //Api.logout() 这里需要重新登录处理
+        case 500:
+             console.log(response);
+             break;
+        case 304: 
             return Promise.reject(response);
         default:
             if (response.message) {

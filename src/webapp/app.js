@@ -10,6 +10,7 @@ import { AppContainer } from 'react-hot-loader'
 import { createStore, applyMiddleware, combineReducers,compose } from 'redux'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 import appReducer from './pages/global';
+import "./assets/styles/main.scss";
 
 const history = createHistory()
 const middleware = routerMiddleware(history)
@@ -31,3 +32,10 @@ const render = Component =>
     )
 
 render(Routers)
+
+if(module.hot) {
+  module.hot.accept('./app', () => {
+      const NextRootContainer = require('./app').default
+      render(NextRootContainer)
+  })
+}

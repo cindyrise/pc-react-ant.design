@@ -2,15 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Layout, Icon } from "antd";
 import classnames from "classnames";
-import TopNav from "../../components/topnav";
-import SiderNav from "../../components/siderNav";
-import * as global from "./action";
-import "../../assets/styles/main.scss";
+import TopNav from "../components/topnav";
+import SiderNav from "../components/siderNav";
+import * as global from "../pages/global/action"
 import { bindActionCreators } from 'redux'
-import Home from "../home";
-import NoExist from "../except/404";
-import NoAuth from "../except/403";
-import { Route, Switch } from "react-router-dom";
+import Home from "../pages/home";
+import NoExist from "../pages/except/404";
+import UserTpl from './userTpl';
+import { Route, Switch,Redirect } from "react-router-dom";
 const { Footer } = Layout;
 
 
@@ -66,9 +65,10 @@ export default class GlobalTpl extends React.Component {
         )}
         <div style={{minHeight: "900px", padding: "15px" }}>
         <Switch>
-            <Route exact path={`${match.path}`} component={Table}></Route>
-            <Route exact path={`${match.path}/noexite`} component={NoExist}></Route>
-            <Route exact path={`${match.path}/noauth`} component={NoAuth}></Route>
+            <Route exact path={`${match.path}`} component={Home}></Route>  
+            <Route exact path={`${match.path}/user`} component={UserTpl}></Route> 
+            <Route exact path={`${match.path}/noexist`} component={NoExist}></Route> 
+            <Redirect to="/app/noexist" /> 
         </Switch>
         </div>
         <Footer style={{ textAlign: "center" }}>

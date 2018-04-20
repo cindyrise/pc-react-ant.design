@@ -5,6 +5,7 @@ const initialState = {
 };
 export const homeReducer = (state = initialState, action) => {
   const { type, payload } = action;
+  console.log(payload,'payload');
   switch (type) {
     case homeType.GET_HOME_DATA:
       return Object.assign({}, state, {
