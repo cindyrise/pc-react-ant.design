@@ -65,6 +65,7 @@ const { Header, Content, Footer } = Layout;
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        this.props.history('/app');
       }
     });
   };
@@ -138,8 +139,9 @@ const { Header, Content, Footer } = Layout;
     ));
 
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <FormItem {...formItemLayout} label="E-mail">
+      <div style={{ minHeight: "1200px"}} className="login-bg">
+      <Form onSubmit={this.handleSubmit} className="register-form">
+        <FormItem {...formItemLayout} label="用户邮箱">
           {getFieldDecorator("email", {
             rules: [
               {
@@ -153,7 +155,25 @@ const { Header, Content, Footer } = Layout;
             ]
           })(<Input />)}
         </FormItem>
-        <FormItem {...formItemLayout} label="Password">
+        <FormItem {...formItemLayout} label="注册账号：">
+          {getFieldDecorator("nickname", {
+            rules: [
+              {
+                required: true,
+                message: "Please input your nickname!",
+                whitespace: true
+              }
+            ]
+          })(<Input />)}
+        </FormItem>
+        <FormItem {...formItemLayout} label="手机号码：">
+          {getFieldDecorator("phone", {
+            rules: [
+              { required: true, message: "Please input your phone number!" }
+            ]
+          })(<Input addonBefore={prefixSelector} style={{ width: "100%" }} />)}
+        </FormItem>
+        <FormItem {...formItemLayout} label="输入密码：">
           {getFieldDecorator("password", {
             rules: [
               {
@@ -166,7 +186,7 @@ const { Header, Content, Footer } = Layout;
             ]
           })(<Input type="password" />)}
         </FormItem>
-        <FormItem {...formItemLayout} label="Confirm Password">
+        <FormItem {...formItemLayout} label="确认密码：">
           {getFieldDecorator("confirm", {
             rules: [
               {
@@ -179,83 +199,20 @@ const { Header, Content, Footer } = Layout;
             ]
           })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
         </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label={
-            <span>
-              Nickname&nbsp;
-              <Tooltip title="What do you want others to call you?">
-                <Icon type="question-circle-o" />
-              </Tooltip>
-            </span>
-          }
-        >
-          {getFieldDecorator("nickname", {
-            rules: [
-              {
-                required: true,
-                message: "Please input your nickname!",
-                whitespace: true
-              }
-            ]
-          })(<Input />)}
-        </FormItem>
-        <FormItem {...formItemLayout} label="Phone Number">
-          {getFieldDecorator("phone", {
-            rules: [
-              { required: true, message: "Please input your phone number!" }
-            ]
-          })(<Input addonBefore={prefixSelector} style={{ width: "100%" }} />)}
-        </FormItem>
-        <FormItem {...formItemLayout} label="Website">
-          {getFieldDecorator("website", {
-            rules: [{ required: true, message: "Please input website!" }]
-          })(
-            <AutoComplete
-              dataSource={websiteOptions}
-              onChange={this.handleWebsiteChange}
-              placeholder="website"
-            >
-              <Input />
-            </AutoComplete>
-          )}
-        </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label="Captcha"
-          extra="We must make sure that your are a human."
-        >
-          <Row gutter={8}>
-            <Col span={12}>
-              {getFieldDecorator("captcha", {
-                rules: [
-                  {
-                    required: true,
-                    message: "Please input the captcha you got!"
-                  }
-                ]
-              })(<Input />)}
-            </Col>
-            <Col span={12}>
-              <Button>Get captcha</Button>
-            </Col>
-          </Row>
-        </FormItem>
         <FormItem {...tailFormItemLayout}>
           {getFieldDecorator("agreement", {
             valuePropName: "checked"
           })(
             <Checkbox>
-              I have read the <a href="">agreement</a>
+              我已经阅读 <a href="">协议</a>
             </Checkbox>
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            Register
-          </Button>
+          <Button type="primary" htmlType="submit">注册</Button>
         </FormItem>
       </Form>
+      </div>
     );
   }
 }
