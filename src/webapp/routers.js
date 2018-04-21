@@ -5,7 +5,6 @@ import GlobalTpl from "./tpls/globalTpl";
 import AuthTpl from "./tpls/authTpl"
 import createHistory from "history/createBrowserHistory";
 //import createHistory from "history/createHashHistory";
-import Login from './pages/login';
 const history = createHistory(); //暂无使用
 
 
@@ -16,7 +15,7 @@ export default class Routers extends React.Component {
        <Switch>
         <Route  path='/app' component={GlobalTpl}></Route>
         <Route  path='/auth' component={AuthTpl}></Route>
-        <Redirect to="/noauth"/>
+        <Redirect to="/app/noexist" /> 
 			</Switch> 
       </Router>
     );

@@ -66,5 +66,4 @@ const { Header, Content, Footer } = Layout;
     );
   }
 }
-
 export default  Form.create()(Login);

@@ -1,10 +1,10 @@
-import { homeType } from './actionType';
+import handleType from './actionType';
 import { message } from 'antd';
 import http from '../../utils/http'
 import apiUrl from '../../constants/apis';
 
 const homeData = (data) => ({
-  type: homeType.GET_HOME_DATA,
+  type: handleType.GET_HOME_DATA,
   payload: data
 })
 export const getHomeData = (params) => async (dispatch, getState) => {

@@ -1,10 +1,10 @@
-import { globalType } from './actionType';
+import handleType from './actionType';
 import { message } from 'antd';
 import http from '../../utils/http'
 import apiUrl from '../../constants/apis';
 
 const userData = (data) => ({
-  type: globalType.GET_USER_DATA,
+  type: handleType.GET_USER_DATA,
   payload: data
 })
 export const getUserData = (params) => async (dispatch, getState) => {
@@ -22,7 +22,7 @@ export const getUserData = (params) => async (dispatch, getState) => {
 }
 
 const navData = (data) => ({
-  type: globalType.GET_NAV_DATA,
+  type: handleType.GET_NAV_DATA,
   payload: data
 })
 export const getNavData = (params) => async (dispatch, getState) => {

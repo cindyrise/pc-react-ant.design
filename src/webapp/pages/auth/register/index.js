@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router";
 import assign from "object-assign";
 import { bindActionCreators } from "redux";
-import * as login from "./action";
+import * as register from "./action";
 import "./style.scss";
 import {
   Form,
@@ -25,8 +25,8 @@ const AutoCompleteOption = AutoComplete.Option;
 
 const { Header, Content, Footer } = Layout;
 @connect(
-  state => ({ ...state.login }),
-  dispatch => bindActionCreators({ ...login }, dispatch)
+  state => ({ ...state.auth.register }),
+  dispatch => bindActionCreators({ ...register }, dispatch)
 )
  class Register extends Component {
   constructor(props) {
@@ -35,37 +35,20 @@ const { Header, Content, Footer } = Layout;
     autoCompleteResult: []};
   }
   componentDidMount() {
-    this.props.getLoginData();
+    console.log(this.props);
+    this.props.submitRegisterData();
   }
   componentWillReceiveProps(nextProps) {}
   shouldComponentUpdate(nextProps, nextState) {
     return this.props != nextProps || this.state != nextState;
   }
-  //   render() {
-  //     return (
-  //       <Layout className="layout">
-  //       <div style={{ minHeight: "1200px"}} className="login-bg">
-  //         <div
-  //           style={{
-  //             color: "white",
-  //             fontSize: "24px",
-  //             marginTop: "230px",
-  //             textAlign: "center"
-  //           }}
-  //         >
-  //          恭喜，Login主页新建成功 , DIY YOUE CODE !!!.
-  //         </div>
-  //       </div>
-  //     </Layout>
-  //     )
-  //   }
-  // }
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
+      console.log(err,values);
       if (!err) {
         console.log("Received values of form: ", values);
-        this.props.history('/app');
+        this.props.history.push('/app');
       }
     });
   };

@@ -26,12 +26,8 @@ export default class GlobalTpl extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match,1213213,this.props);
   }
   componentWillReceiveProps(nextProps) {
-    setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 200);
   }
 
   toggleSider = () => {
@@ -42,7 +38,6 @@ export default class GlobalTpl extends React.Component {
   };
 
   render() {
-    //console.log(this.props.match,1213213,this.props);
     const { children, isFullScreen, theme, navData,match } = this.props;
     let { pathname, hash } = window.location;
     const { isInIframe, isSiderShow } = this.state;

@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux';
 import { Layout, Menu, Icon } from 'antd';
 import { isEmpty, cloneDeep, merge } from 'lodash';
-
+import { NavLink } from "react-router-dom"; 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 export default class SiderNav extends Component {
@@ -95,17 +95,17 @@ export default class SiderNav extends Component {
                     dataItem.children.length ? <SubMenu key={dataItem.key} title={<span> <i className={dataItem.icon}> </i> {dataItem.name}</span>}>
                       {
                         dataItem.children.map((treeItem, childThree) => (
-                          <Menu.Item key={treeItem.key}><a href={treeItem.url}> <i className={treeItem.icon}> </i> {treeItem.name}</a></Menu.Item>
+                          <Menu.Item key={treeItem.key}><NavLink to={treeItem.url}> <i className={treeItem.icon}> </i> {treeItem.name}</NavLink></Menu.Item>
                         ))
                       }
                     </SubMenu> :
-                      <Menu.Item key={dataItem.key}><a href={dataItem.url}> <i className={dataItem.icon}> </i> {dataItem.name}</a></Menu.Item>
+                      <Menu.Item key={dataItem.key}><NavLink to={dataItem.url}> <i className={dataItem.icon}> </i> {dataItem.name}</NavLink></Menu.Item>
                   ))
                 }
               </SubMenu> :
-              <Menu.Item key={item.key}><a href={item.url}> <i className={item.icon}
+              <Menu.Item key={item.key}><NavLink to={item.url}> <i className={item.icon}
                 style={{ marginRight: idx === 0 ? 3 : 5 }}
-              > </i> {item.name}</a></Menu.Item>
+              > </i> {item.name}</NavLink></Menu.Item>
           ))
         }
       </Menu>

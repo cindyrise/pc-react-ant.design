@@ -3,15 +3,18 @@ import { message } from 'antd';
 import http from '../../../utils/http'
 import apiUrl from '../../../constants/apis';
 
-const registerData = (data) => ({
-  type: handleType.GET_REGISTER_DATA,
-  payload: data
+const userList = (data) => ({
+  type: handleType.GET_USER_DATA,
+  payload: {
+    data,
+    reload:true
+  }
 })
-export const submitRegisterData = (params) => async (dispatch, getState) => {
+export const getUserList = (params) => async (dispatch, getState) => {
   try {
-      let response = await http.get(apiUrl.getHomeData, params);
+      let response = await http.get(apiUrl.getUserList, params);
       if (response.result) {
-          await dispatch(registerData(response.data));
+          await dispatch(userList(response.data));
       } else {
           //返回失败
       }
@@ -19,4 +22,3 @@ export const submitRegisterData = (params) => async (dispatch, getState) => {
       console.log('error: ', error)
   }
 }
-

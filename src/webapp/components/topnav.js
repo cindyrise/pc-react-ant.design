@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Layout, Icon, Dropdown, Menu } from 'antd';
 import classnames from 'classnames';
-
+import { Link } from "react-router-dom";
 const { Header } = Layout;
 
 const mapState = state => ({
@@ -24,7 +24,7 @@ export default class TopNav extends React.Component {
   componentDidMount() {}
 
   logout() {
-    this.props.history.push('/login');
+    this.props.history.push('/auth/login');
   }
 
   render() {
@@ -42,51 +42,42 @@ export default class TopNav extends React.Component {
         navis.push(navi);
       }
     });
-    console.log(navData,12131313);
     const userMenu = (<Menu>
       <Menu.Item style={{ overflow: 'hidden', textOverflow: '' }}>
-        <a href="javascript:void(0)"
-          style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
-        >{ tel }</a>
+        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{ tel }</span>
       </Menu.Item>
       <Menu.Item>
-        <a href={FRONT_CONF.LOGINURL}>用户中心</a>
+        <Link to="/user">用户中心</Link>
       </Menu.Item>
       <Menu.Item>
-        <a href="javascript:void(0)"
-          onClick={ this.logout.bind(this) }
-        >退出登录</a>
+        <span onClick={ this.logout.bind(this) }>退出登录</span>
       </Menu.Item>
     </Menu>);
-
     const settingMenu = (<Menu>
       {settingNavi && settingNavi.children.map(o => <Menu.Item key={ o.code }>
-        <a href={ o.url || o.children[0].url }>{ o.name }</a>
+        <Link to={ o.url || o.children[0].url }>{ o.name }</Link>
       </Menu.Item>)}
     </Menu>);
 
     const helpMenu = (<Menu style={{ left: -15 }}>
       <Menu.Item>
-        <a href="/webapp.html#/contact">联系我们</a>
+        <Link to="/app">联系我们</Link>
       </Menu.Item>
       <Menu.Item>
-      <a href="/webapp.html#/contact">帮助文档</a>
+      <Link to="/app">帮助文档</Link>
       </Menu.Item>
     </Menu>)
 
     return <Header className="m-header">
       <div className="logo">
-        <a href="/webapp.html#/home">
+        <Link to="/app">
           <img src={ FRONT_CONF.COMPANY_LOGO } alt="EasyLogo"/>
-        </a>
+        </Link>
       </div>
       <ul className="user f-fr">
         <li className="navitem">
           <Dropdown overlay={ userMenu } trigger={["click"]}>
-            <a>{ name.length <= 24 ?
-              name :
-              name.substr(0, 24) + '...'
-             } <Icon type="down" /></a>
+            <a>{ name} <Icon type="down" /></a>
           </Dropdown>
         </li>
         <li className="navitem">
@@ -98,9 +89,7 @@ export default class TopNav extends React.Component {
         </li>
         <li className="navitem">
           <Dropdown overlay={ helpMenu } trigger={["click"]}>
-            <a href="javacript:void(0)">
-              <i  style={{fontSize:'22px'}} className="iconfont icon-bangzhu3"></i>
-            </a>
+             <a> <i  style={{fontSize:'22px'}} className="iconfont icon-bangzhu3"></i></a>
           </Dropdown>
         </li>
       </ul>
@@ -120,8 +109,8 @@ export default class TopNav extends React.Component {
             active: currentUrl.indexOf(navi.url) !== -1||(currentUrl.indexOf('/alert')!=-1&&navi.url.indexOf('/alert')!=-1)
           })}>
             { navi.url ?
-              <a href={ url }>{ navi.name }</a> :
-              <a href={ url }>{ navi.name }</a>
+              <Link to={ url }>{ navi.name }</Link> :
+              <Link to={ url }>{ navi.name }</Link>
             }
           </li>
         }) }

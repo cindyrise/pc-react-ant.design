@@ -1,21 +1,20 @@
 import assign from 'object-assign';
-import { homeType } from './actionType';
+import handleType from './actionType';
 const initialState = {
   homeData: []
 };
-export const homeReducer = (state = initialState, action) => {
+ const homeReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  console.log(payload,'payload');
   switch (type) {
-    case homeType.GET_HOME_DATA:
+    case handleType.GET_HOME_DATA:
       return Object.assign({}, state, {
         homeData: payload,
       });
-      case homeType.GET_USER_DATA:
+      case handleType.GET_USER_DATA:
       return Object.assign({}, state, {
         userData: payload,
       });
-      case homeType.GET_NAV_DATA:
+      case handleType.GET_NAV_DATA:
       return Object.assign({}, state, {
         navData: payload,
       });
@@ -23,3 +22,5 @@ export const homeReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export default homeReducer

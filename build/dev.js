@@ -134,6 +134,7 @@ module.exports = function makeWebpackConfig() {
 
   config.devServer = {
     compress: true,
+    hot:true,
     watchOptions: {
       ignored: /node_modules/,
     },

@@ -1,17 +1,18 @@
 import { combineReducers } from 'redux';
 import assign from 'object-assign';
-import { loginType } from './actionType';
+import handleType from './actionType';
 const initialState = {
-  loginData: []
+  regiserData: []
 };
-export const loginReducer = (state = initialState, action) => {
+const registerReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-      case loginType.GET_LOGIN_DATA:
+      case handleType.GET_REGISTER_DATA:
       return Object.assign({}, state, {
-        loginData: payload,
+        regiserData: payload,
       });
     default:
       return state;
   }
 };
+export default registerReducer
