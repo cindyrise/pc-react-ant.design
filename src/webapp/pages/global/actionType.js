@@ -1,5 +1,5 @@
 import mirror from 'mirror-creator';
-export default  mirror([
+export default mirror([
   'GET_USER_DATA',
   'GET_NAV_DATA',
 ],'global/')

@@ -6,7 +6,7 @@ const initialState = {
  const listReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case handleType.GET_USER_DATA:
+    case handleType.GET_DATA:
       return Object.assign({}, state, {
         userList: payload,
       });

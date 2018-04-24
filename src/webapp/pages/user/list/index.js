@@ -54,12 +54,12 @@ export default class UserList extends Component {
     return (
       <Layout className="layout">
           <div  style={{
-              marginTop: "60px",
+              marginTop: "20px",
               background:"#fff",
               padding:"10px"
             }}
           >
-           <Table rowSelection={rowSelection}   rowKey="uid"   loading={isLoad} columns={usercln} dataSource={userList} />
+           <Table rowSelection={rowSelection} bordered  rowKey="id"    loading={isLoad} columns={usercln} dataSource={userList} />
           </div>
       </Layout>
     );

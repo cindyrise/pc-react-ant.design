@@ -9,7 +9,7 @@
     "start": "npm run dev",
     "newPage": "node ./src/scripts/newPage.js",
     "newCom": "node ./src/scripts/newCom.js",
-    "preview": "pushstate-server ./dist 1234"
+    "preview": "pushstate-server  ./dist  1234"
   },
   "license": "MIT",
   "dependencies": {

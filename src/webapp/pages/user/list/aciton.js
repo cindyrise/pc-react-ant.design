@@ -4,7 +4,7 @@ import http from '../../../utils/http'
 import apiUrl from '../../../constants/apis';
 
 const userList = (data) => ({
-  type: handleType.GET_USER_DATA,
+  type: handleType.GET_DATA,
   payload: {
     data,
     reload:true

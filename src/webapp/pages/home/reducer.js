@@ -10,14 +10,6 @@ const initialState = {
       return Object.assign({}, state, {
         homeData: payload,
       });
-      case handleType.GET_USER_DATA:
-      return Object.assign({}, state, {
-        userData: payload,
-      });
-      case handleType.GET_NAV_DATA:
-      return Object.assign({}, state, {
-        navData: payload,
-      });
     default:
       return state;
   }
