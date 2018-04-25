@@ -9,7 +9,7 @@
     "start": "npm run dev",
     "newPage": "node ./src/scripts/newPage.js",
     "newCom": "node ./src/scripts/newCom.js",
-    "preview": "pushstate-server  ./dist  1234"
+    "preview":"pushstate-server ./dist 1234"
   },
   "license": "MIT",
   "dependencies": {
@@ -28,15 +28,14 @@
     "mirror-creator": "^1.1.0",
     "moment": "^2.18.1",
     "object-assign": "^4.1.1",
-    "prop-types": "^15.6.1",
+    "prop-types": "^15.6.1", 
     "pushstate-server": "^3.0.1",
-    "query-string": "^6.0.0",
     "react": "^16.3.0",
     "react-async-component": "^2.0.0",
     "react-dom": "^16.3.0",
     "react-dtui": "^1.9.1",
     "react-redux": "^5.0.5",
-    "react-resize-detector": "^0.6.0",
+    "react-resize-detector": "^2.3.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",

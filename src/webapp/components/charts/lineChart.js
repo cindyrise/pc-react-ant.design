@@ -12,7 +12,7 @@ export default class Line extends React.Component {
   
   initChart=()=> {
     const { option={},config={handle:''}} = this.props;
-    let chart = echarts.init(this.id,'walden',{renderer: 'canvas'});
+    const{ chart }=this.state;
     chart.showLoading();
     chart.off('click');
     if(typeof config.handle=='function' ){
@@ -30,7 +30,10 @@ export default class Line extends React.Component {
     }
   }
   componentDidMount(){
-    this.initChart();
+    let chart=echarts.init(this.id,'walden',{renderer: 'canvas'});
+    this.setState({chart},()=>{
+      this.initChart();
+    });
   }
   componentDidUpdate() {
     this.initChart()

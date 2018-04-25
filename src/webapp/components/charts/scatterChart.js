@@ -12,7 +12,7 @@ export default class ScatterChart extends React.Component {
   
   initChart=()=> {
     const { option={},config={handle:''}} = this.props;
-    let chart = echarts.init(this.id,'walden',{renderer: 'svg'});
+    const{ chart }=this.state;
     chart.showLoading();
     chart.off('click');
     if(typeof config.handle=='function' ){
@@ -30,7 +30,10 @@ export default class ScatterChart extends React.Component {
     }
   }
   componentDidMount(){
-    this.initChart();
+    let chart=echarts.init(this.id,'walden',{renderer: 'svg'});
+    this.setState({chart},()=>{
+      this.initChart();
+    });
   }
   componentDidUpdate() {
     this.initChart()

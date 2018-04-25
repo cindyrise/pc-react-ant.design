@@ -2,7 +2,7 @@ import React from 'react'
 
 import echarts from './index'
 import 'echarts/lib/chart/bar';
-import {fromJS} from 'immutable'
+import {fromJS} from 'immutable';
 
 export default class BarChart extends React.Component {
   
@@ -12,7 +12,7 @@ export default class BarChart extends React.Component {
   
   initChart=()=> {
     const { option={},config={handle:''}} = this.props;
-    let chart = echarts.init(this.id,'walden',{renderer: 'svg'});
+    const{ chart }=this.state;
     chart.showLoading();
     chart.off('click');
     if(typeof config.handle=='function' ){
@@ -30,15 +30,21 @@ export default class BarChart extends React.Component {
     }
   }
   componentDidMount(){
-    this.initChart();
+    let chart=echarts.init(this.id,'walden',{renderer: 'svg'});
+    this.setState({chart},()=>{
+      this.initChart();
+    });
   }
   componentDidUpdate() {
-    this.initChart()
+    this.initChart();
   }
-  
+  componentWillUnmount(){
+    const{ chart }=this.state;
+    chart.dispose();
+  }
   render() {
     let { height="200px",width="100%"} = this.props.config;
-    return <div ref={id => this.id = id} style={{width, height}}></div>
+    return  <div ref={id => this.id = id} style={{width, height}}></div>
   }
 }
 
