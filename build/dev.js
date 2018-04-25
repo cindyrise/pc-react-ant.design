@@ -50,7 +50,7 @@ module.exports = function makeWebpackConfig() {
         test: /\.(less|css)$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", 'less-loader?{modifyVars:{"icon-url":"\'../../../../../src/webapp/assets/fonts/antdfont/antd_icon\'"}}'],
+          use: ["css-loader", 'less-loader'],
         })
       }, {
         test: /\.(scss|sass)$/,
