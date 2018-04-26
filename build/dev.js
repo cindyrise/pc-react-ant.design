@@ -9,6 +9,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../');
 const buildPath = path.resolve(rootPath, 'dist');
 const serverConfig = require('./server.js')
+const  theme = require('../antd-theme.js');
+
+console.log(theme,'theme', 'less-loader?{modifyVars:'+JSON.stringify(theme)+"}");
 /**
  * Env
  * Get npm lifecycle event to identify the environment
@@ -50,7 +53,8 @@ module.exports = function makeWebpackConfig() {
         test: /\.(less|css)$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", 'less-loader'],
+          use: ["css-loader", "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"],
+          //use: ["css-loader", 'less-loader?{modifyVars:{"icon-url":"\'/src/webapp/assets/fonts/antdfont/antd_icon\'"}}'],
         })
       }, {
         test: /\.(scss|sass)$/,

@@ -38,7 +38,10 @@ export default class Line extends React.Component {
   componentDidUpdate() {
     this.initChart()
   }
-  
+  componentWillUnmount(){
+    const{ chart }=this.state;
+    chart.dispose();
+  }
   render() {
     let { height="200px",width="100%"} = this.props.config;
     return <div ref={id => this.id = id} style={{width, height}}></div>

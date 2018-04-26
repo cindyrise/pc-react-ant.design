@@ -44,7 +44,6 @@ export default class Home extends Component {
  }
   componentWillReceiveProps(nextProps) {}
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps,1211);
     return this.props != nextProps || this.state != nextState;
   }
   clickBar=(data)=>{

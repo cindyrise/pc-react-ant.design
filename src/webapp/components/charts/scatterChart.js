@@ -38,6 +38,10 @@ export default class ScatterChart extends React.Component {
   componentDidUpdate() {
     this.initChart()
   }
+  componentWillUnmount(){
+    const{ chart }=this.state;
+    chart.dispose();
+  }
   render() {
     let { height="300px",width="100%"} = this.props.config||{};
     return <div ref={id => this.id = id} style={{width, height}}></div>

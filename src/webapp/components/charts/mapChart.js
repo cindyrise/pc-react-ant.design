@@ -38,8 +38,13 @@ export default class MapChart extends React.Component {
       this.initChart();
     });
   }
+
   componentDidUpdate() {
     this.initChart()
+  }
+  componentWillUnmount(){
+    const{ chart }=this.state;
+    chart.dispose();
   }
   render() {
     let { height="300px",width="100%"} = this.props.config||{};
