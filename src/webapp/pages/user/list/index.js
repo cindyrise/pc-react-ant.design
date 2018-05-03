@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
 import { Link } from "react-router";
-import { Layout, Menu, Breadcrumb,Table } from "antd";
+import { Layout, Menu, Breadcrumb,Table,Row, Col } from "antd";
 import * as list  from "./aciton"; 
 import { isEmpty } from "lodash";
 import moment from "moment";
@@ -26,12 +26,10 @@ export default class UserList extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props,1213,"ppioe");
     this.props.getUserList({});
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps,2123123);
     if(nextProps.userList.reload){
       this.setState({userList:nextProps.userList.data,isLoad:false});
     }
@@ -52,16 +50,9 @@ export default class UserList extends Component {
     };
    const{userList,isLoad}=this.state;
     return (
-      <Layout className="layout">
-          <div  style={{
-              marginTop: "20px",
-              background:"#fff",
-              padding:"10px"
-            }}
-          >
-           <Table rowSelection={rowSelection} bordered  rowKey="id"    loading={isLoad} columns={usercln} dataSource={userList} />
-          </div>
-      </Layout>
+       <Row>
+         <Col><Table rowSelection={rowSelection} bordered  rowKey="id"    loading={isLoad} columns={usercln} dataSource={userList} /></Col>
+       </Row>
     );
   }
 }

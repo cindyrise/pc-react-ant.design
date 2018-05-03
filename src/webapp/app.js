@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory'
 //import createHistory from "history/createHashHistory";
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+//import enUS from 'antd/lib/locale-provider/en_US';
+
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import Routers from './routers';
@@ -14,7 +18,7 @@ import appReducer from './pages/global';
 import "./assets/styles/main.scss";
 
 
-const history = createHistory();
+export const history = createHistory();
 const middleware = routerMiddleware(history);
 const middlewares = [thunk, middleware];
 
@@ -26,8 +30,10 @@ const render = Component =>
     ReactDOM.render(
        <AppContainer>
            <Provider store={ store }>
+            <LocaleProvider locale={zhCN}>
                 <Component />
-            </Provider>
+             </LocaleProvider>
+           </Provider>
       </AppContainer>,
        document.getElementById('root')
     )

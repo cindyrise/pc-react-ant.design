@@ -14,7 +14,6 @@ export default class UserTpl extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match,1213213,this.props);
   }
   componentWillReceiveProps(nextProps) {
   }
@@ -23,14 +22,12 @@ export default class UserTpl extends React.Component {
     let { pathname, hash } = window.location;
     const { isInIframe, isSiderShow } = this.state;
     return (
-      <Layout>
-        <div style={{minHeight: "900px", padding: "15px" }}>
+        <div className="content">
         <Switch>
             <Route exact path={`${match.path}`} component={UserList}></Route>
             {/* <Route  path={`${match.path}/profile`} component={Profile}></Route> */}
         </Switch>
         </div>
-      </Layout>
     );
   }
 }

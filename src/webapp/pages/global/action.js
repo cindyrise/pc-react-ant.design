@@ -2,6 +2,7 @@ import handleType from './actionType';
 import { message } from 'antd';
 import http from '../../utils/http'
 import apiUrl from '../../constants/apis';
+import { browserHistory } from 'react-router';
 
 const userData = (data) => ({
   type: handleType.GET_USER_DATA,
@@ -10,8 +11,7 @@ const userData = (data) => ({
 export const getUserData = (params) => async (dispatch, getState) => {
   try {
       let response = await http.get(apiUrl.getUserData, params);
-      console.log(response,'response');
-      if (response.result) {
+      if (response.success) {
           await dispatch(userData(response.data));
       } else {
           //返回失败
@@ -28,8 +28,7 @@ const navData = (data) => ({
 export const getNavData = (params) => async (dispatch, getState) => {
   try {
       let response = await http.get(apiUrl.getNavData, params);
-      console.log(response,'response');
-      if (response.result) {
+      if (response.success) {
           await dispatch(navData(response.data));
       } else {
           //返回失败
@@ -38,4 +37,5 @@ export const getNavData = (params) => async (dispatch, getState) => {
       console.log('error: ', error)
   }
 }
+
 

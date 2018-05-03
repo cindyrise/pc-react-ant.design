@@ -3,6 +3,7 @@ import React from 'react'
 import echarts from './index'
 import 'echarts/lib/chart/line'
 import {fromJS} from 'immutable'
+import ReactResizeDetector from 'react-resize-detector';
 
 export default class Line extends React.Component {
   
@@ -20,7 +21,7 @@ export default class Line extends React.Component {
     }
     chart.setOption(option);
     chart.hideLoading();
-    window.addEventListener('resize',()=>{chart.resize()});
+    window.addEventListener('resize',this.chartResize.bind(this));
   }
   shouldComponentUpdate(nextProps,nextState){
     if(fromJS(nextProps)==fromJS(this.props)){
@@ -40,11 +41,19 @@ export default class Line extends React.Component {
   }
   componentWillUnmount(){
     const{ chart }=this.state;
+    window.removeEventListener('resize',this.chartResize.bind(this));
     chart.dispose();
+  }
+  chartResize=()=>{
+    const { chart } = this.state;
+    if(chart) chart.resize();
   }
   render() {
     let { height="200px",width="100%"} = this.props.config;
-    return <div ref={id => this.id = id} style={{width, height}}></div>
+    return <div>
+    <div ref={id => (this.id = id)}style={{width, height}} />
+    <ReactResizeDetector  handleWidth handleHeight onResize={this.chartResize.bind(this)}/>
+   </div>
   }
 }
 

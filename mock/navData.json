@@ -1,161 +1,80 @@
 {
+  "success": true,
+  "message": "执行成功~~",
   "data": [
     {
-      "checked": true,
-      "children": [],
-      "code": "M_APP",
-      "icon": "fa fa-cubes",
-      "id": 500,
-      "name": "主页",
-      "pid": 0,
-      "type": 0,
-      "url": "/app"
+      "id": 8,
+      "parentId": 0,
+      "permissionName": "数据中心",
+      "permissionIcon": "",
+      "permissionUrl": "/app/user",
+      "children": []
     },
     {
-      "checked": true,
-      "children": [],
-      "code": "M_SEARCH",
-      "icon": "fa fa-search",
-      "id": 503,
-      "name": "用户",
-      "pid": 0,
-      "type": 0,
-      "url": "/user"
-    },
-    {
-      "checked": true,
+      "id": 1,
+      "parentId": 0,
+      "permissionName": "后台管理",
+      "permissionIcon": "mail",
+      "permissionUrl": "",
       "children": [
         {
-          "checked": true,
-          "children": [
-            {
-              "checked": true,
-              "children": [],
-              "code": "M_UPLOAD_TYPE",
-              "icon": "iconfont icon-sahngchuan",
-              "id": 524,
-              "name": "账户设置",
-              "pid": 523,
-              "type": 0,
-              "url": "/app"
-            },
-            {
-              "checked": true,
-              "children": [],
-              "code": "M_AGENT_MGMT",
-              "icon": "iconfont icon-agent",
-              "id": 528,
-              "name": "账户信息",
-              "pid": 523,
-              "type": 0,
-              "url": "/agent"
-            }
-          ],
-          "code": "M_UPLOAD",
-          "icon": "iconfont icon-shangchuan",
-          "id": 523,
-          "name": "个人中心",
-          "pid": 522,
-          "type": 0
+          "id": 3,
+          "parentId": 1,
+          "permissionName": "用户管理",
+          "permissionIcon": "",
+          "permissionUrl": "/app",
+          "children": []
         },
         {
-          "checked": true,
-          "children": [],
-          "code": "M_PARSER",
-          "icon": "iconfont icon-xinghao",
-          "id": 534,
-          "name": "功能设置",
-          "pid": 522,
-          "type": 0,
-          "url": "/app "
+          "id": 4,
+          "parentId": 1,
+          "permissionName": "角色权限",
+          "permissionIcon": [],
+          "permissionUrl": "/app/role",
+          "children": []
         },
         {
-          "checked": true,
-          "children": [
-            {
-              "checked": true,
-              "children": [],
-              "code": "M_DATA_AGENT_FILE",
-              "icon": "iconfont icon-filelist",
-              "id": 578,
-              "name": "数据建模",
-              "pid": 538,
-              "type": 0,
-              "url": "/app "
-            }
-          ],
-          "code": "M_DATA_AGENT",
-          "icon": "iconfont icon-shujuyuanguanli",
-          "id": 538,
-          "name": "数据维护",
-          "pid": 522,
-          "type": 0
-        },
-        {
-          "checked": true,
-          "children": [
-            {
-              "checked": true,
-              "children": [],
-              "code": "M_USER_AGENT",
-              "icon": "iconfont icon-people",
-              "id": 551,
-              "name": "用户管理",
-              "pid": 550,
-              "type": 0,
-              "url": "/app "
-            },
-            {
-              "checked": true,
-              "children": [],
-              "code": "M_FUN_PERMS",
-              "icon": "iconfont icon-gongneng",
-              "id": 555,
-              "name": "功能权限",
-              "pid": 550,
-              "type": 0,
-              "url": "/app "
-            },
-            {
-              "checked": true,
-              "children": [],
-              "code": "M_DATA_PERMS",
-              "icon": "iconfont icon-wechaticon07",
-              "id": 559,
-              "name": "数据权限",
-              "pid": 550,
-              "type": 0,
-              "url": "/app "
-            },
-            {
-              "checked": true,
-              "children": [],
-              "code": "M_ORG_AGENT",
-              "icon": "iconfont icon-sitemap",
-              "id": 563,
-              "name": "组织架构",
-              "pid": 550,
-              "type": 0,
-              "url": "/app "
-            }
-          ],
-          "code": "M_PERMS_AGENT",
-          "icon": "iconfont icon-quanxianguanli",
-          "id": 550,
-          "name": "权限管理",
-          "pid": 522,
-          "type": 0
+          "id": 5,
+          "parentId": 1,
+          "permissionName": "日志管理",
+          "permissionIcon": [],
+          "permissionUrl": "/app/log",
+          "children": []
         }
-      ],
-      "code": "MENU_SETTING",
-      "icon": "fa fa-cog",
-      "id": 522,
-      "name": "设置",
-      "pid": 0,
-      "type": 0
+      ]
+    },
+    {
+      "id": 2,
+      "parentId": 0,
+      "permissionName": "智能分析",
+      "permissionIcon": "appstore",
+      "permissionUrl": "",
+      "children": [
+        {
+          "id": 6,
+          "parentId": 2,
+          "permissionName": "明细查询",
+          "permissionIcon": "",
+          "permissionUrl": "/app/detail",
+          "children": []
+        },
+        {
+          "id": 7,
+          "parentId": 2,
+          "permissionName": "数据分析",
+          "permissionIcon": "",
+          "permissionUrl": "/app/analyze",
+          "children": []
+        },
+        {
+          "id": 27,
+          "parentId": 2,
+          "permissionName": "我的文档",
+          "permissionIcon": "",
+          "permissionUrl": "/app/doc",
+          "children": []
+        }
+      ]
     }
-  ],
-  "result": true,
-  "result_code": 1,
-  "result_message": "执行成功"
+  ]
 }

@@ -1,5 +1,5 @@
 var FRONT_CONF = {
-  isTopNav: true, // 电信版本配置项，主要是去掉顶部导航，所有导航放到左侧
+  isTopNav: true,
   isTelecomVersion: false, // 电信版本配置项，主要是去掉顶部导航，所有导航放到左侧
   APP_DOMAIN: '.dtstack.net', // 云日志部署的域
   APP_UIC_HOST: '//dtuic.test.dtstack.net:85/', // uic的host

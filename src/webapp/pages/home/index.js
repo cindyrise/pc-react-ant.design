@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
 import { Link } from "react-router";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb,Row,Col } from "antd";
 import * as home  from "./aciton"; 
 import { isEmpty } from "lodash";
 import moment from "moment";
@@ -14,10 +14,9 @@ import LineChart from '../../components/charts/lineChart';
 import MapChart from '../../components/charts/mapChart';
 import ScatterChart from '../../components/charts/scatterChart';
 import PieChart from '../../components/charts/pieChart';
+import ReactResizeDetector from 'react-resize-detector'
 import {barOption,lineOption,mapOption,scatterOption,pieOption} from '../../constants/option';
 
-
-const { Header, Content, Footer } = Layout;
 @connect(
   state => ({ ...state.home }),
   dispatch => bindActionCreators({ ...home}, dispatch)
@@ -32,7 +31,6 @@ export default class Home extends Component {
   }
   componentDidMount() {
     this.props.getHomeData({});
-    console.log(this.props,'pppp');
     this.setChart();
   }
  setChart=()=>{
@@ -42,7 +40,9 @@ export default class Home extends Component {
     handle:this.clickBar
   }})
  }
-  componentWillReceiveProps(nextProps) {}
+  componentWillReceiveProps(nextProps) {
+
+  }
   shouldComponentUpdate(nextProps, nextState) {
     return this.props != nextProps || this.state != nextState;
   }
@@ -52,17 +52,12 @@ export default class Home extends Component {
   render() {
     const {barOption,config}=this.state;
     return (
-      <Layout className="layout">
-          <div  style={{
-              color: "red",
-              fontSize: "24px",
-              marginTop: "120px",
-              textAlign: "center"
-            }}
-          >
+        <div className="content">
            恭喜，home主页新建成功,DIY YOUE CODE!!!. 
            <a href="/noauth">noauth</a>&nbsp; <a href="/noexite">noexite</a>
 
+          <ReactResizeDetector  handleWidth handleHeight> <BarChart option={barOption} config={config}/></ReactResizeDetector>
+           <br/>
            <BarChart option={barOption} config={config}/>
            <br/>
            <LineChart option={lineOption} config={config}/>
@@ -72,8 +67,7 @@ export default class Home extends Component {
            <ScatterChart option={scatterOption} conifg={config}/>
            <br/>
            <PieChart option={pieOption} conifg={config}/>
-          </div>
-      </Layout>
+       </div>
     );
   }
 }
