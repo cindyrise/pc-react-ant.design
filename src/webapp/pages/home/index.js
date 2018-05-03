@@ -43,9 +43,6 @@ export default class Home extends Component {
   componentWillReceiveProps(nextProps) {
 
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props != nextProps || this.state != nextState;
-  }
   clickBar=(data)=>{
     console.log('点击触发啦',data)
   }
@@ -55,9 +52,6 @@ export default class Home extends Component {
         <div className="content">
            恭喜，home主页新建成功,DIY YOUE CODE!!!. 
            <a href="/noauth">noauth</a>&nbsp; <a href="/noexite">noexite</a>
-
-          <ReactResizeDetector  handleWidth handleHeight> <BarChart option={barOption} config={config}/></ReactResizeDetector>
-           <br/>
            <BarChart option={barOption} config={config}/>
            <br/>
            <LineChart option={lineOption} config={config}/>

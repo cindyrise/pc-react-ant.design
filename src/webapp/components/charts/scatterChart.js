@@ -4,7 +4,7 @@ import echarts from './index'
 import 'echarts/lib/chart/scatter'
 import {fromJS} from 'immutable'
 import ReactResizeDetector from 'react-resize-detector';
-
+import { isInteger } from 'lodash';
 export default class ScatterChart extends React.Component {
   
   constructor(props) {
@@ -21,7 +21,6 @@ export default class ScatterChart extends React.Component {
     }
     chart.setOption(option);
     chart.hideLoading();
-    window.addEventListener('resize',()=>{chart.resize()});
   }
   shouldComponentUpdate(nextProps,nextState){
     if(fromJS(nextProps)==fromJS(this.props)){
@@ -35,25 +34,23 @@ export default class ScatterChart extends React.Component {
     this.setState({chart},()=>{
       this.initChart();
     });
-    setTimeout(()=>{  chart.resize();},0);
   }
   componentDidUpdate() {
     this.initChart()
   }
   componentWillUnmount(){
     const{ chart }=this.state;
-    window.removeEventListener('resize',()=>{chart.resize()});
     chart.dispose();
   }
-  onResize=(data)=>{
+  chartResize=(width)=>{
     const { chart } = this.state;
-    chart.resize();
+    if(chart&&isInteger(width)) chart.resize();
   }
   render() {
     let { height="300px",width="100%"} = this.props.config||{};
     return <div>
     <div ref={id => (this.id = id)}style={{width, height}} />
-    <ReactResizeDetector  handleWidth handleHeight onResize={this.onResize.bind(this)}/>
+    <ReactResizeDetector  handleWidth handleHeight onResize={this.chartResize.bind(this)}/>
    </div>
   }
 }

@@ -4,6 +4,7 @@ import echarts from "./index";
 import "echarts/lib/chart/bar";
 import { fromJS } from "immutable";
 import ReactResizeDetector from 'react-resize-detector';
+import { isInteger } from 'lodash';
 
 export default class BarChart extends React.Component {
   constructor(props) {
@@ -20,7 +21,6 @@ export default class BarChart extends React.Component {
     }
     chart.setOption(option);
     chart.hideLoading();
-    window.addEventListener("resize", this.chartResize.bind(this));
   };
   shouldComponentUpdate(nextProps, nextState) {
     if (fromJS(nextProps) == fromJS(this.props)) {
@@ -40,19 +40,17 @@ export default class BarChart extends React.Component {
   }
   componentWillUnmount() {
     const { chart } = this.state;
-    window.removeEventListener("resize", this.chartResize.bind(this));
     chart.dispose();
   }
-  chartResize=()=>{
+  chartResize=(width)=>{
     const { chart } = this.state;
-    if(chart) chart.resize();
+    if(chart&&isInteger(width)) chart.resize();
   }
   render() {
     let { height="200px",width="100%"} = this.props.config;
-    console.log(this.props,'121312');
     return <div>
        <div ref={id => (this.id = id)}style={{width, height}} />
-       <ReactResizeDetector  handleWidth handleHeight onResize={this.chartResize.bind(this)}/>
+       <ReactResizeDetector  handleWidth  onResize={this.chartResize.bind(this)}/>
       </div>
   }
 }

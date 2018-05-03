@@ -88,7 +88,6 @@ export default class SideNav extends React.Component {
     return  <Sider width={200} style={{ background: '#fff' }}
           trigger={null}
           collapsible
-
           collapsed={this.state.collapsed}
       >
      <div className="fold-btn"> 
@@ -101,7 +100,6 @@ export default class SideNav extends React.Component {
           onClick={this.setKeys.bind(this)}
           mode="inline"
           className='side-menu'
-          inlineCollapsed={this.state.collapsed}
         >
            {
           sideData.map((item, idx) => (

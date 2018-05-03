@@ -4,7 +4,7 @@ import echarts from './index'
 import 'echarts/lib/chart/pie'
 import {fromJS} from 'immutable'
 import ReactResizeDetector from 'react-resize-detector';
-
+import { isInteger } from 'lodash';
 export default class PieChart extends React.Component {
   
   constructor(props) {
@@ -21,7 +21,6 @@ export default class PieChart extends React.Component {
     }
     chart.setOption(option);
     chart.hideLoading();
-    window.addEventListener('resize',this.chartResize.bind(this));
   }
   shouldComponentUpdate(nextProps,nextState){
     if(fromJS(nextProps)==fromJS(this.props)){
@@ -42,12 +41,11 @@ export default class PieChart extends React.Component {
   }
   componentWillUnmount(){
     const{ chart }=this.state;
-    window.removeEventListener('resize',this.chartResize.bind(this));
     chart.dispose();
   }
-  chartResize=()=>{
+  chartResize=(width)=>{
     const { chart } = this.state;
-    if(chart) chart.resize();
+    if(chart&&isInteger(width)) chart.resize();
   }
   render() {
     let { height="200px",width="100%"} = this.props.config||{};
