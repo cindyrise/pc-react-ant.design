@@ -4,39 +4,29 @@
 const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-//require('ng-annotate');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../');
 const buildPath = path.resolve(rootPath, 'dist');
 const  theme = require('../antd-theme.js');
-/**
- * Env
- * Get npm lifecycle event to identify the environment
- */
+
 let ENV = process.env.npm_lifecycle_event;
-let isTest = ENV === 'test' || ENV === 'test-watch';
 let isProd = ENV === 'build';
 let extractCSS = new ExtractTextPlugin({filename: 'styles.css'});
 module.exports = function makeWebpackConfig() {
-  /**
-   * Config
-   * Reference: http://webpack.github.io/docs/configuration.html
-   * This is the object where all configuration gets set
-   */
+  
   let config = {};
-
-  config.entry = isTest ? {} : {
+  config.entry = {
     vendor: ['react', 'react-dom', 'react-router',
       'moment','echarts'],
     app: [path.resolve(__dirname, '../src/webapp/app.js')],
   };
 
-  config.output = isTest ? {} : {
+  config.output =  {
     filename: '[name].[hash].js',
     path: buildPath,
-    publicPath: './',
+    publicPath: '/',
     chunkFilename: '[name].[hash].js'
   };
 
@@ -49,8 +39,8 @@ module.exports = function makeWebpackConfig() {
       test: /\.(less|css)$/,
       use: ExtractTextPlugin.extract({
         fallback: "style-loader",
-        use: ["css-loader", "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"],
-        //use: ["css-loader", 'less-loader?{modifyVars:{"icon-url":"\'/src/webapp/assets/fonts/antdfont/antd_icon\'"}}'],
+        //use: ["css-loader", "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"],
+        use: ["css-loader", 'less-loader?{modifyVars:{"icon-url":"\'../../../../../src/webapp/assets/fonts/antdfont/antd_ic\'"}}'],
       })
     }, {
       test: /\.(scss|sass)$/,
@@ -105,31 +95,28 @@ module.exports = function makeWebpackConfig() {
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
   ];
 
-  // Skip rendering index.html in test mode
-  if (!isTest) {
-    config.plugins.push(new HtmlWebpackPlugin({
-        filename: "index.html",
-        template: path.resolve(__dirname, "../src/webapp.ejs"),
-        inject: "body",
-        chunks: ["vendor", "app"],
-        assets: {
-          favicon: "img/favicon.ico",
-          config_js: "/conf.prod.js"
-        },
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true,
-          minifyJS: true,
-          minifyCSS: true
-          //minifyURLs: true,
-        }
-      }), extractCSS);
-  }
+  config.plugins.push(new HtmlWebpackPlugin({
+    filename: "index.html",
+    template: path.resolve(__dirname, "../src/webapp.ejs"),
+    inject: "body",
+    chunks: ["vendor", "app"],
+    assets: {
+      favicon: "img/favicon.ico",
+      config_js: "/conf.prod.js"
+    },
+    minify: {
+      removeComments: true,
+      collapseWhitespace: true,
+      removeRedundantAttributes: true,
+      useShortDoctype: true,
+      removeEmptyAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      keepClosingSlash: true,
+      minifyJS: true,
+      minifyCSS: true
+      //minifyURLs: true,
+    }
+  }), extractCSS);
 
   // Add build specific plugins
   if (isProd) {
@@ -152,6 +139,9 @@ module.exports = function makeWebpackConfig() {
       }),
      new CopyWebpackPlugin([{
         from: path.resolve(rootPath, './src/webapp/config')
+      }]),
+      new CopyWebpackPlugin([{
+        from: path.resolve(rootPath, './mock')
       }]),
       new CopyWebpackPlugin([{
         from: path.resolve(rootPath, './src/webapp/assets')

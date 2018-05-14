@@ -8,10 +8,13 @@
     margin-top:-3px;
   }
   .logo{
-    width: 120px;
-    height: 30px;
-    float: left;
-    margin-left:20px;
+    img{
+      width: 150px;
+      height: 60px;
+      float: left;
+      margin-left: 10px;
+      padding: 10px 10px;
+    }
   }
   .top-nav-left{
    float: left;

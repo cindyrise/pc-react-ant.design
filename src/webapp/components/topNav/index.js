@@ -38,7 +38,7 @@ export default class TopNav extends React.Component {
     return <Header className="top-nav">
       <div className="logo">
         <Link to="/app">
-          <img src={ FRONT_CONF.COMPANY_LOGO } alt="logio"/>
+          <img src={ FRONT_CONF.COMPANY_LOGO } alt="logo"/>
         </Link>
       </div>
       <div className="top-nav-right">
