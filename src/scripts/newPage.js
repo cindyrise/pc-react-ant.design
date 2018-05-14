@@ -1,8 +1,8 @@
 const ins = require('./new');
 const serverConfig = require('../../build/server');
-let apiDir = ins.path.join(__dirname, '../webapp/api');
-let pageDir = ins.path.join(__dirname, '../webapp/pages/');
-let routerFile = ins.path.join(__dirname, '../webapp/routers.js');
+let apis = ins.path.join(__dirname, '../webapp/constants/apis.js');
+let pageDir = ins.path.join(__dirname, '../webapp/pages');
+let routerFile = ins.path.join(__dirname, '../webapp/globalTpl.js');
 
 // //追加router
  let routerContent = ins.fs.readFileSync(routerFile).toString();
@@ -14,13 +14,6 @@ let routerPath = "<Route path='/" + ins.smallCamel + "' component={" + ins.bigCa
 routerContent = routerContent.replace(/(import .* from .*;)([\s\n]*const)/, "$1\nimport " + ins.bigCamel + " from \'./pages/" + ins.smallCamel + "\';$2")
   .replace(/(<Switch>)/g, "$1\n\t\t\t\t"+routerPath);
 ins.fs.writeFileSync(routerFile, routerContent);
-
-//新建页面
-let tplFragFile = ins.path.join(ins.tplDir, 'fragePage.js');
-let fragContent = ins.fs.readFileSync(tplFragFile, "utf-8").replace(/smallCamel/g, ins.smallCamel);
-ins.fs.mkdirSync(ins.path.join(pageDir,ins.smallCamel));
-ins.fs.mkdirSync(ins.path.join(pageDir,ins.smallCamel,'/components'));
-ins.fs.writeFileSync(ins.path.join(pageDir,ins.smallCamel + '/index.js'), fragContent);
 
 let tplPageFile = ins.path.join(ins.tplDir, 'page.js');
 let pageContent = ins.fs.readFileSync(tplPageFile, "utf-8").replace(/bigCamel/g, ins.bigCamel)
@@ -38,7 +31,7 @@ let reducerFragPath = ins.path.join(pageDir, '/global/index.js');
 let reducerFragContent = ins.fs.readFileSync(reducerFragPath, "utf-8");
 let reducerImport = "import { " + ins.smallCamel + "Reducer } from '\..\/" + ins.smallCamel + "/reducer'";
 reducerFragContent = reducerFragContent.replace(/(import .* from .*;)([\n]*const)/, "$1\n" + reducerImport + ";$2")
-  .replace(/(};)/g, "\t"+ins.smallCamel + ":" + ins.smallCamel + "Reducer,$1\n");
+  .replace(/(};)/g, "\t"+ins.smallCamel+ ",$1\n");
  ins.fs.writeFileSync(reducerFragPath, reducerFragContent);
 
 let reducerFile = ins.path.join(ins.tplDir, 'reducer.js');
@@ -52,24 +45,13 @@ let actionTypeStr =
   export const ${ins.smallCamel}Type = mirror([
   'GET_${ins.smallCamel.toUpperCase()}_DATA',
 ],'${ins.smallCamel}/');`;
-ins.fs.writeFileSync(ins.path.join(pageDir,ins.smallCamel+'/actionType.js'), actionTypeStr);
+ins.fs.writeFileSync(ins.path.join(pageDir,ins.smallCamel+'/constant.js'), actionTypeStr);
 
-//新建api
-let apiStr =
-  `import http from '../utils/http'
-   import apiUrl from '../constants/apis'
-export default {
-  get${ins.bigCamel}Data(params) {
-    return http.post(apiUrl.getUserData, params);
-  }
-};`
-ins.fs.writeFileSync(ins.path.join(apiDir, ins.smallCamel + '.js'), apiStr);
 
 //新建style
 let styleStr =
   `.content{
-  margin:160px auto;
- font-size:36px;
+  font-size:26px;
 }`
 ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/style.scss'), styleStr);
 ins.log(ins.chalk.yellow(ins.chalk.bgBlue(`新建页面成功访问地址:http://${serverConfig.host}:${serverConfig.port}/${ins.smallCamel}`)));
