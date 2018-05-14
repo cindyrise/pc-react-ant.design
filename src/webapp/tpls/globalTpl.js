@@ -12,6 +12,7 @@ import NoExist from "../pages/except/404";
 import UserTpl from "./userTpl";
 import { Route, Switch, Redirect } from "react-router-dom";
 
+
 const { Footer, Content } = Layout;
 @connect(
   state => ({ ...state.global }),

@@ -10,7 +10,8 @@ const appReducer = {
   home,
   auth,
   userList
- };
+};
+	
 	
 	
 	
