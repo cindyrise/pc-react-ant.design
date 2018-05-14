@@ -1,10 +1,10 @@
-import handleType from './actionType';
+import {registerType} from './constant';
 import { message } from 'antd';
 import http from '../../../utils/http'
 import apiUrl from '../../../constants/apis';
 
 const registerData = (data) => ({
-  type: handleType.GET_REGISTER_DATA,
+  type: registerType.GET_REGISTER_DATA,
   payload: data
 })
 export const submitRegisterData = (params) => async (dispatch, getState) => {

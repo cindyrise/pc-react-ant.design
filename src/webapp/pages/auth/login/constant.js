@@ -1,4 +1,4 @@
 import mirror from 'mirror-creator';
-export default mirror([
+export const loginType= mirror([
   'GET_LOGIN_DATA',
 ],'login/');

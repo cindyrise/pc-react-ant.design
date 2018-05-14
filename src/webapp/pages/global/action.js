@@ -1,11 +1,11 @@
-import handleType from './actionType';
+import {globalType} from './constant';
 import { message } from 'antd';
 import http from '../../utils/http'
 import apiUrl from '../../constants/apis';
 import { browserHistory } from 'react-router';
 
 const userData = (data) => ({
-  type: handleType.GET_USER_DATA,
+  type: globalType.GET_USER_DATA,
   payload: data
 })
 export const getUserData = (params) => async (dispatch, getState) => {
@@ -22,7 +22,7 @@ export const getUserData = (params) => async (dispatch, getState) => {
 }
 
 const navData = (data) => ({
-  type: handleType.GET_NAV_DATA,
+  type: globalType.GET_NAV_DATA,
   payload: data
 })
 export const getNavData = (params) => async (dispatch, getState) => {

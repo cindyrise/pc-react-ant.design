@@ -1,10 +1,10 @@
-import handleType from './actionType';
+import {listType} from './constant';
 import { message } from 'antd';
 import http from '../../../utils/http'
 import apiUrl from '../../../constants/apis';
 
 const userList = (data) => ({
-  type: handleType.GET_DATA,
+  type: listType.GET_DATA,
   payload: {
     data,
     reload:true

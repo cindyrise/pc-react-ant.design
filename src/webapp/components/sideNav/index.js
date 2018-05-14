@@ -72,7 +72,6 @@ export default class SideNav extends React.Component {
     return openKeysArr;
   }
   setKeys=(item)=>{
-    console.log(item,'232',121312);
     this.setState({
       selectedKeys: [item.key]
     })
@@ -84,7 +83,6 @@ export default class SideNav extends React.Component {
   }
   render() {
     const {sideData,openKeys,selectedKeys}=this.state;
-    console.log(openKeys,selectedKeys,sideData);
     return  <Sider width={200} style={{ background: '#fff' }}
           trigger={null}
           collapsible

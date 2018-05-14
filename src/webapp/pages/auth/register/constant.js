@@ -1,6 +1,6 @@
 import mirror from 'mirror-creator';
 
-export default  mirror([
+export const registerType=  mirror([
   'GET_REGISTER_DATA',
 ],'register/');
 

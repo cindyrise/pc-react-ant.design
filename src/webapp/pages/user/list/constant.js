@@ -1,4 +1,8 @@
+import mirror from 'mirror-creator';
 import React, { Component, PropTypes } from "react";
+export const listType= mirror([
+  'GET_DATA',
+],'user/');
 export const usercln = [
   {
     key:'1',

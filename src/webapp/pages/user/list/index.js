@@ -7,7 +7,7 @@ import * as list  from "./aciton";
 import { isEmpty } from "lodash";
 import moment from "moment";
 moment.locale("zh-cn");
-import {usercln} from './columns'
+import {usercln} from './constant'
 import assign from "object-assign";
 import "./style.scss";
 

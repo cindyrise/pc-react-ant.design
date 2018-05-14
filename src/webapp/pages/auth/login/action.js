@@ -1,10 +1,10 @@
-import handleType from './actionType';
+import {loginType} from './constant';
 import { message } from 'antd';
 import http from '../../../utils/http'
 import apiUrl from '../../../constants/apis';
 
 const loginData = (data) => ({
-  type: handleType.GET_LOGIN_DATA,
+  type: loginType.GET_LOGIN_DATA,
   payload: data
 })
 export const getLoginData = (params) => async (dispatch, getState) => {
