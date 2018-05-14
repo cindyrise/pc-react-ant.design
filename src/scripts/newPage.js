@@ -2,9 +2,9 @@ const ins = require('./new');
 const serverConfig = require('../../build/server');
 let apis = ins.path.join(__dirname, '../webapp/constants/apis.js');
 let pageDir = ins.path.join(__dirname, '../webapp/pages');
-let routerFile = ins.path.join(__dirname, '../webapp/globalTpl.js');
+let routerFile = ins.path.join(__dirname, '../webapp/tpls/globalTpl.js');
 
-// //追加router
+//追加router
  let routerContent = ins.fs.readFileSync(routerFile).toString();
 if (routerContent.indexOf(ins.smallCamel) > -1) {
   ins.log(ins.chalk.yellow(ins.chalk.bgBlue('命名重复或者传入参数为空')));
@@ -12,13 +12,16 @@ if (routerContent.indexOf(ins.smallCamel) > -1) {
 }
 let routerPath = "<Route path='/" + ins.smallCamel + "' component={" + ins.bigCamel + "}></Route>";
 routerContent = routerContent.replace(/(import .* from .*;)([\s\n]*const)/, "$1\nimport " + ins.bigCamel + " from \'./pages/" + ins.smallCamel + "\';$2")
-  .replace(/(<Switch>)/g, "$1\n\t\t\t\t"+routerPath);
+  .replace(/(<Redirect to="\/app\/noexist" \/>)/g, "$1\n\t\t\t\t\t\t\t"+routerPath);
 ins.fs.writeFileSync(routerFile, routerContent);
 
+//新建页面
 let tplPageFile = ins.path.join(ins.tplDir, 'page.js');
 let pageContent = ins.fs.readFileSync(tplPageFile, "utf-8").replace(/bigCamel/g, ins.bigCamel)
   .replace(/smallCamel/g, ins.smallCamel);
-ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/' + ins.smallCamel + '.js'), pageContent);
+ ins.fs.mkdirSync(ins.path.join(pageDir, "components"));
+ ins.fs.mkdirSync(ins.path.join(pageDir, ins.smallCamel));
+ ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/index.js'), pageContent);
 
 //新建action
 let actionFile = ins.path.join(ins.tplDir, 'action.js');
@@ -29,9 +32,9 @@ ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/action.js'), acti
 //新建reducers
 let reducerFragPath = ins.path.join(pageDir, '/global/index.js');
 let reducerFragContent = ins.fs.readFileSync(reducerFragPath, "utf-8");
-let reducerImport = "import { " + ins.smallCamel + "Reducer } from '\..\/" + ins.smallCamel + "/reducer'";
+let reducerImport = "import " + ins.smallCamel + " from '\..\/" + ins.smallCamel + "/reducer'";
 reducerFragContent = reducerFragContent.replace(/(import .* from .*;)([\n]*const)/, "$1\n" + reducerImport + ";$2")
-  .replace(/(};)/g, "\t"+ins.smallCamel+ ",$1\n");
+  .replace(/(};)/g, "\t"+ins.smallCamel+ ",$1\n\t");
  ins.fs.writeFileSync(reducerFragPath, reducerFragContent);
 
 let reducerFile = ins.path.join(ins.tplDir, 'reducer.js');
@@ -54,7 +57,7 @@ let styleStr =
   font-size:26px;
 }`
 ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/style.scss'), styleStr);
-ins.log(ins.chalk.yellow(ins.chalk.bgBlue(`新建页面成功访问地址:http://${serverConfig.host}:${serverConfig.port}/${ins.smallCamel}`)));
+ins.log(ins.chalk.yellow(ins.chalk.bgBlue(`新建页面成功访问地址:http://${serverConfig.host}:${serverConfig.port}/app/${ins.smallCamel}`)));
 
 
 

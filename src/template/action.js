@@ -8,7 +8,7 @@ const smallCamelData = (data) => ({
   type: smallCamelType.GET_TYPE_DATA,
   payload: data
 })
-export const getsmallCamelData = (params) => async (dispatch, getState) => {
+export const getbigCamelData = (params) => async (dispatch, getState) => {
   try {
       let response = await http.get(apiUrl.getUserData, params);
       if (response.success) {

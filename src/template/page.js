@@ -6,11 +6,8 @@ import { isEmpty } from 'lodash';
 import assign from 'object-assign';
 import './style.scss';
 import * as smallCamel  from "./aciton"; 
-
 const { Header, Content, Footer } = Layout;
-const mapState = state => ({
-  smallCamelData: state.smallCamel.smallCamelData,
-});
+
 @connect(
   state => ({ ...state.smallCamel }),
   dispatch => bindActionCreators({ ...smallCamel}, dispatch)
