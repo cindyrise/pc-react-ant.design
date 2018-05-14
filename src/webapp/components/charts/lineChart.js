@@ -3,7 +3,8 @@ import React from 'react'
 import echarts from './index'
 import 'echarts/lib/chart/line'
 import {fromJS} from 'immutable'
-
+import ReactResizeDetector from 'react-resize-detector';
+import { isInteger } from 'lodash';
 export default class Line extends React.Component {
   
   constructor(props) {
@@ -12,7 +13,7 @@ export default class Line extends React.Component {
   
   initChart=()=> {
     const { option={},config={handle:''}} = this.props;
-    let chart = echarts.init(this.id,'walden',{renderer: 'canvas'});
+    const{ chart }=this.state;
     chart.showLoading();
     chart.off('click');
     if(typeof config.handle=='function' ){
@@ -20,7 +21,6 @@ export default class Line extends React.Component {
     }
     chart.setOption(option);
     chart.hideLoading();
-    window.addEventListener('resize',()=>{chart.resize()});
   }
   shouldComponentUpdate(nextProps,nextState){
     if(fromJS(nextProps)==fromJS(this.props)){
@@ -30,15 +30,28 @@ export default class Line extends React.Component {
     }
   }
   componentDidMount(){
-    this.initChart();
+    let chart=echarts.init(this.id,'walden',{renderer: 'canvas'});
+    this.setState({chart},()=>{
+      this.initChart();
+    });
   }
   componentDidUpdate() {
     this.initChart()
   }
-  
+  componentWillUnmount(){
+    const{ chart }=this.state;
+    chart.dispose();
+  }
+  chartResize=(width)=>{
+    const { chart } = this.state;
+    if(chart&&isInteger(width)) chart.resize();
+  }
   render() {
     let { height="200px",width="100%"} = this.props.config;
-    return <div ref={id => this.id = id} style={{width, height}}></div>
+    return <div>
+    <div ref={id => (this.id = id)}style={{width, height}} />
+    <ReactResizeDetector  handleWidth handleHeight onResize={this.chartResize.bind(this)}/>
+   </div>
   }
 }
 

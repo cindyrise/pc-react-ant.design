@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../');
 const buildPath = path.resolve(rootPath, 'dist');
 const serverConfig = require('./server.js')
+const  theme = require('../antd-theme.js');
 /**
  * Env
  * Get npm lifecycle event to identify the environment
@@ -24,7 +25,7 @@ module.exports = function makeWebpackConfig() {
   let config = {};
   config.entry = isTest ? {} : {
     vendor: ['react', 'react-dom', 'react-router',
-      'moment'],
+      'moment','echarts'],
     app: [
       'react-hot-loader/patch',
       `webpack-dev-server/client?http://${serverConfig.host}:${serverConfig.port}`,
@@ -50,7 +51,8 @@ module.exports = function makeWebpackConfig() {
         test: /\.(less|css)$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", 'less-loader?{modifyVars:{"icon-url":"\'../../../../../src/webapp/assets/fonts/antdfont/antd_icon\'"}}'],
+          use: ["css-loader", 'less-loader'] //开发环境
+          //use: ["css-loader", "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"],//生产环境
         })
       }, {
         test: /\.(scss|sass)$/,
@@ -134,6 +136,7 @@ module.exports = function makeWebpackConfig() {
 
   config.devServer = {
     compress: true,
+    hot:true,
     watchOptions: {
       ignored: /node_modules/,
     },

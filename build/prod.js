@@ -10,6 +10,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../');
 const buildPath = path.resolve(rootPath, 'dist');
+const  theme = require('../antd-theme.js');
 /**
  * Env
  * Get npm lifecycle event to identify the environment
@@ -28,7 +29,7 @@ module.exports = function makeWebpackConfig() {
 
   config.entry = isTest ? {} : {
     vendor: ['react', 'react-dom', 'react-router',
-      'moment'],
+      'moment','echarts'],
     app: [path.resolve(__dirname, '../src/webapp/app.js')],
   };
 
@@ -48,7 +49,8 @@ module.exports = function makeWebpackConfig() {
       test: /\.(less|css)$/,
       use: ExtractTextPlugin.extract({
         fallback: "style-loader",
-        use: ["css-loader", 'less-loader?{modifyVars:{"icon-url":"\'../../../../../src/webapp/assets/fonts/antdfont/antd_icon\'"}}'],
+        use: ["css-loader", "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"],
+        //use: ["css-loader", 'less-loader?{modifyVars:{"icon-url":"\'/src/webapp/assets/fonts/antdfont/antd_icon\'"}}'],
       })
     }, {
       test: /\.(scss|sass)$/,
@@ -82,7 +84,6 @@ module.exports = function makeWebpackConfig() {
       "constants": path.resolve(__dirname, "../src/webapp/features/constants/"),
       "reducers": path.resolve(__dirname, "../src/webapp/features/reducers/"),
       "pages": path.resolve(__dirname, "../src/webapp/features/pages/"),
-      'apis': path.resolve(__dirname, '../src/webapp/api/'),
       "utils": path.resolve(__dirname, "../src/webapp/utils/"),
     }
   };
