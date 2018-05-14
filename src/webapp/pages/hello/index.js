@@ -1,19 +1,19 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { bindActionCreators } from 'redux'
 import { Layout, Menu, Breadcrumb } from "antd";
 import { isEmpty } from 'lodash';
+import { bindActionCreators } from 'redux'
 import assign from 'object-assign';
 import './style.scss';
-import * as smallCamel  from "./action"; 
+import * as hello  from "./action"; 
 const { Header, Content, Footer } = Layout;
 
 @connect(
-  state => ({ ...state.smallCamel }),
-  dispatch => bindActionCreators({ ...smallCamel}, dispatch)
+  state => ({ ...state.hello }),
+  dispatch => bindActionCreators({ ...hello}, dispatch)
 )
-export default class bigCamel extends Component {
+export default class Hello extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +37,7 @@ export default class bigCamel extends Component {
             textAlign: "center"
           }}
         >
-         恭喜，bigCamel主页新建成功 , DIY YOUE CODE !!!.   
+         恭喜，Hello主页新建成功 , DIY YOUE CODE !!!.   
         </div>
       </div>     
     )

@@ -16,7 +16,7 @@ let extractCSS = new ExtractTextPlugin({filename: 'styles.css'});
 
 module.exports = function makeWebpackConfig() {
   let config = {};
-  config.entry = isTest ? {} : {
+  config.entry =  {
     vendor: ['react', 'react-dom', 'react-router',
       'moment','echarts'],
     app: [
@@ -27,7 +27,7 @@ module.exports = function makeWebpackConfig() {
     ]
   };
 
-  config.output = isTest ? {} : {
+  config.output =  {
     publicPath: "/",
     filename: isProd ? '[name].bundle.js' : '[name].bundle.js',
     chunkFilename: isProd ? '[name].bundle.js' : '[name].bundle.js',

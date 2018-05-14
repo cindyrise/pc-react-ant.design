@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 import assign from 'object-assign';
-import { smallCamelType } from './constant';
+import { helloType } from './constant';
 const initialState = {
-  smallCamelData: []
+  helloData: []
 };
-const smallCamelReducer = (state = initialState, action) => {
+export const helloReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-      case smallCamelType.GET_TYPE_DATA:
+      case helloType.GET_HELLO_DATA:
       return Object.assign({}, state, {
-        smallCamelData: payload,
+        helloData: payload,
       });
     default:
       return state;
   }
 };
-export default smallCamelReducer
+export default helloReducer
