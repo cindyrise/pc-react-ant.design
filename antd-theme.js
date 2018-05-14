@@ -11,6 +11,6 @@ module.exports = {
       // "primary-color": "#069165",
       // "link-color": "#069165",
       // "input-height-lg": "32px",
-      "icon-url":"\"/src/webapp/assets/fonts/antdfont/antd_icon\"",
+      "icon-url":"\'../../../../../src/webapp/assets/fonts/antdfont/antd_icon\'",
   };
 

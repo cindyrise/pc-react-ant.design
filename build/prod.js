@@ -1,6 +1,4 @@
-'use strict';
 
-// Modules
 const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
@@ -39,8 +37,7 @@ module.exports = function makeWebpackConfig() {
       test: /\.(less|css)$/,
       use: ExtractTextPlugin.extract({
         fallback: "style-loader",
-        //use: ["css-loader", "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"],
-        use: ["css-loader", 'less-loader?{modifyVars:{"icon-url":"\'../../../../../src/webapp/assets/fonts/antdfont/antd_ic\'"}}'],
+        use: ["css-loader", "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"],
       })
     }, {
       test: /\.(scss|sass)$/,
@@ -78,13 +75,6 @@ module.exports = function makeWebpackConfig() {
     }
   };
 
-
-
-  /**
-   * Plugins
-   * Reference: http://webpack.github.io/docs/configuration.html#plugins
-   * List: http://webpack.github.io/docs/list-of-plugins.html
-   */
   config.plugins = [
     new webpack.DefinePlugin({
       __PRODUCTION: JSON.stringify(true),
@@ -118,11 +108,8 @@ module.exports = function makeWebpackConfig() {
     }
   }), extractCSS);
 
-  // Add build specific plugins
   if (isProd) {
     config.plugins.push(
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-      // Minify all javascript, switch loaders to minimizing mode
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
         comments: false,
@@ -149,18 +136,10 @@ module.exports = function makeWebpackConfig() {
     )
   }
 
-  /**
-   * Dev server configuration
-   * Reference: http://webpack.github.io/docs/configuration.html#devserver
-   * Reference: http://webpack.github.io/docs/webpack-dev-server.html
-   */
   config.devServer = {
     contentBase: buildPath,
     stats: 'minimal'
   };
-  /*
-    打包例外的第三方库
-  */
   config.externals = {
     'FRONT_CONF': 'FRONT_CONF'
   };
