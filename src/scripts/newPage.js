@@ -10,8 +10,8 @@ if (routerContent.indexOf(ins.smallCamel) > -1) {
   ins.log(ins.chalk.yellow(ins.chalk.bgBlue('命名重复或者传入参数为空')));
   return;
 }
-let routerPath = "<Route path='/" + ins.smallCamel + "' component={" + ins.bigCamel + "}></Route>";
-routerContent = routerContent.replace(/(import .* from .*;)([\s\n]*const)/, "$1\nimport " + ins.bigCamel + " from \'./pages/" + ins.smallCamel + "\';$2")
+let routerPath = "<Route path={`${match.path}/" + ins.smallCamel + "`} component={" + ins.bigCamel + "}></Route>";
+routerContent = routerContent.replace(/(import .* from .*;)([\s\n]*const)/, "$1\nimport " + ins.bigCamel + " from \'../pages/" + ins.smallCamel + "\';$2")
   .replace(/(<Redirect to="\/app\/noexist" \/>)/g, "$1\n\t\t\t\t\t\t\t"+routerPath);
 ins.fs.writeFileSync(routerFile, routerContent);
 
@@ -19,8 +19,8 @@ ins.fs.writeFileSync(routerFile, routerContent);
 let tplPageFile = ins.path.join(ins.tplDir, 'page.js');
 let pageContent = ins.fs.readFileSync(tplPageFile, "utf-8").replace(/bigCamel/g, ins.bigCamel)
   .replace(/smallCamel/g, ins.smallCamel);
- ins.fs.mkdirSync(ins.path.join(pageDir, "components"));
  ins.fs.mkdirSync(ins.path.join(pageDir, ins.smallCamel));
+ ins.fs.mkdirSync(ins.path.join(pageDir,ins.smallCamel, "components"));
  ins.fs.writeFileSync(ins.path.join(pageDir, ins.smallCamel + '/index.js'), pageContent);
 
 //新建action
@@ -34,7 +34,7 @@ let reducerFragPath = ins.path.join(pageDir, '/global/index.js');
 let reducerFragContent = ins.fs.readFileSync(reducerFragPath, "utf-8");
 let reducerImport = "import " + ins.smallCamel + " from '\..\/" + ins.smallCamel + "/reducer'";
 reducerFragContent = reducerFragContent.replace(/(import .* from .*;)([\n]*const)/, "$1\n" + reducerImport + ";$2")
-  .replace(/(};)/g, "\t"+ins.smallCamel+ ",$1\n\t");
+  .replace(/(};)/g, "\t,"+ins.smallCamel+ "$1\n\t");
  ins.fs.writeFileSync(reducerFragPath, reducerFragContent);
 
 let reducerFile = ins.path.join(ins.tplDir, 'reducer.js');
