@@ -94,6 +94,7 @@ module.exports = function makeWebpackConfig() {
       favicon: "img/favicon.ico",
       config_js: "/conf.prod.js"
     },
+    showErrors: true,
     minify: {
       removeComments: true,
       collapseWhitespace: true,
@@ -104,7 +105,6 @@ module.exports = function makeWebpackConfig() {
       keepClosingSlash: true,
       minifyJS: true,
       minifyCSS: true
-      //minifyURLs: true,
     }
   }), extractCSS);
 
