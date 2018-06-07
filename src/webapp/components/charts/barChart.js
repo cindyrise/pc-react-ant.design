@@ -1,6 +1,6 @@
 import React from "react";
 
-import echarts from "./index";
+import echarts from "./common";
 import "echarts/lib/chart/bar";
 import { fromJS } from "immutable";
 import ReactResizeDetector from 'react-resize-detector';

@@ -1,6 +1,5 @@
 import React from 'react'
-
-import echarts from './index'
+import echarts from "./common";
 import 'echarts/lib/component/geo'
 import 'echarts/lib/chart/map' //引入地图
 import 'echarts/lib/chart/lines'

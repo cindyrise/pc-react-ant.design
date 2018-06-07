@@ -1,11 +1,11 @@
 import React from 'react'
 
-import echarts from './index'
+import echarts from "./common";
 import 'echarts/lib/chart/line'
 import {fromJS} from 'immutable'
 import ReactResizeDetector from 'react-resize-detector';
 import { isInteger } from 'lodash';
-export default class Line extends React.Component {
+export default class LineChart extends React.Component {
   
   constructor(props) {
     super(props)

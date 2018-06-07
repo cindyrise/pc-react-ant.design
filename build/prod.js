@@ -91,7 +91,7 @@ module.exports = function makeWebpackConfig() {
     inject: "body",
     chunks: ["vendor", "app"],
     assets: {
-      favicon: "img/favicon.ico",
+      favicon: "/img/favicon.ico",
       config_js: "/conf.prod.js"
     },
     showErrors: true,
@@ -135,11 +135,6 @@ module.exports = function makeWebpackConfig() {
       }])
     )
   }
-
-  config.devServer = {
-    contentBase: buildPath,
-    stats: 'minimal'
-  };
   config.externals = {
     'FRONT_CONF': 'FRONT_CONF'
   };
