@@ -14,7 +14,7 @@ import { AppContainer } from 'react-hot-loader'
 import { createStore, applyMiddleware, combineReducers,compose } from 'redux'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 import appReducer from './pages/global';
-// import './assets/styles/antd.less';
+// import 'antd/dist/antd.css';
 import "./assets/styles/main.scss";
 
 

@@ -1,4 +1,3 @@
-import { asyncComponent } from "react-async-component";
 import React from "react";
 import { Route, Router, Switch,Redirect } from "react-router-dom";
 import GlobalTpl from "./tpls/globalTpl";
