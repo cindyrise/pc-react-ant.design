@@ -25,7 +25,8 @@ module.exports = function makeWebpackConfig() {
   config.output = {
     path: buildPath,
     publicPath: "/",
-    filename: "app.[hash].js"
+    filename: "js/[name].[hash].js",
+    chunkFilename: "js/[name].[chunkhash].js"
   };
   config.devtool = 'cheap-eval-source-map';
   config.module = {
@@ -33,13 +34,14 @@ module.exports = function makeWebpackConfig() {
       test: /\.js$/,
       use: ['babel-loader'],
       exclude: /node_modules/,
-    }, {
+    }, 
+    {
       test: /\.(less|css)$/,
       use: [
-         MiniCssExtractPlugin.loader,
+        "style-loader",
         "css-loader",
         "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"
-      ],//开发环境
+      ],
     },
     {
       test: /\.(scss|sass)$/,
@@ -66,28 +68,29 @@ module.exports = function makeWebpackConfig() {
   };
   config.plugins=[];
   config.plugins.push(
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(__dirname, '../src/webapp.ejs'),
-      hash: false,
-      assets: {
-        favicon: '/img/favicon.ico',
-        config_js: '/conf.dev.js'
-      }
-    }),
-    new webpack.DefinePlugin({__PRODUCTION: JSON.stringify(true)}),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new CopyWebpackPlugin([
-      {from: path.resolve(rootPath, './src/webapp/config')},
-      {from: path.resolve(rootPath, './src/webapp/assets')},
-      {from: path.resolve(__dirname, '../mock')}
+    new CopyWebpackPlugin([ 
+      { from: path.resolve(rootPath, './src/webapp/config'),to:"./conf"},
+      {from: path.resolve(__dirname, '../mock'),to:"./mock"},
+      {from: path.resolve(rootPath, './src/webapp/assets/img'),to:"./images"},
+
     ]),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
+    new webpack.DefinePlugin({__PRODUCTION: JSON.stringify(false)}),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      　　filename: "[name].[chunkhash:8].css",
-     　　 chunkFilename: "[id].css"
-   　})
+      　filename: "css/[name].[chunkhash:8].css",
+      　chunkFilename: "css/[id].css"
+   　}),
+   new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: path.resolve(__dirname, '../src/webapp.ejs'),
+    hash: false,
+    assets: {
+      favicon: '/images/favicon.ico',
+      config_js: '/conf/conf.prod.js'
+    }
+  }),
   );
   config.optimization = {
     runtimeChunk: {

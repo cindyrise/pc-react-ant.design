@@ -31,8 +31,7 @@
     "react-router-redux": "^4.0.8",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "resolve-url-loader": "^2.3.0"
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -62,6 +61,7 @@
     "lodash": "^4.17.10",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.7.2",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
     "postcss-loader": "^2.1.6",
     "pushstate-server": "^3.0.1",
