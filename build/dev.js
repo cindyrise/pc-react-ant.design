@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const rootPath = path.resolve(__dirname, '../');
 const buildPath = path.resolve(rootPath, 'dist');
 const serverConfig = require('./server.js');
+const  theme = require('../antd-theme.js');
 
 module.exports = function makeWebpackConfig() {
   let config = {mode:"development"};
@@ -36,13 +37,9 @@ module.exports = function makeWebpackConfig() {
       test: /\.(less|css)$/,
       use: [
          MiniCssExtractPlugin.loader,
-         {
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            publicPath: '../'
-          }
-        },
-        "css-loader",'less-loader'] //开发环境
+        "css-loader",
+        "less-loader?{modifyVars:"+JSON.stringify(theme)+"}"
+      ],//开发环境
     },
     {
       test: /\.(scss|sass)$/,
