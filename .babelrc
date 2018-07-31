@@ -26,6 +26,7 @@
       "transform-decorators-legacy",
       "transform-async-to-generator",
       "transform-do-expressions",
-      "syntax-do-expressions"
+      "syntax-do-expressions",
+      "syntax-dynamic-import"
     ]
   }

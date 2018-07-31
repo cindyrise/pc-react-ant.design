@@ -7,12 +7,24 @@ import SideNav from "../components/sideNav";
 import Foot from '../components/footer'
 import * as global from "../pages/global/action";
 import { bindActionCreators } from "redux";
-import Home from "../pages/home";
-import NoExist from "../pages/except/404";
-import UserTpl from "./userTpl";
 import { Route, Switch, Redirect } from "react-router-dom";
-
-
+import Loadable from 'react-loadable'
+import Loading from '../components/loading'
+const Home = Loadable({
+  loader: () => import('../pages/home'),
+  loading: Loading,
+})
+const NoExist = Loadable({
+  loader: () => import('../pages/except/404'),
+  loading: Loading,
+})
+const UserTpl = Loadable({
+  loader: () => import('./userTpl'),
+  loading: Loading,
+})
+// import Home from "../pages/home";
+// import NoExist from "../pages/except/404";
+// import UserTpl from "./userTpl";
 const { Footer, Content } = Layout;
 @connect(
   state => ({ ...state.global }),
