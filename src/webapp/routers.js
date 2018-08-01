@@ -4,10 +4,7 @@ import Loadable from 'react-loadable'
 import Loading from './components/loading'
 //import GlobalTpl from "./tpls/globalTpl";
 import AuthTpl from "./tpls/authTpl"
-const GlobalTpl = Loadable({
-  loader: () => import('./tpls/globalTpl'),
-  loading: Loading,
-})
+const GlobalTpl = Loadable({loader: () => import('./tpls/globalTpl'),loading: Loading})
 import createHistory from "history/createBrowserHistory";
 //import createHistory from "history/createHashHistory";
 const history = createHistory(); //暂无使用
